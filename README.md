@@ -11,3 +11,14 @@ Python 3.9-3.12
 Pandas, Numpy, Matplotlib 
 #### Phase 1 : Darts 0.13.0, Scikit-learn 3.8.1 
 #### Phase 2 : TensorFlow 2.15.0
+
+## Phase 1
+```
+import pandas as pd
+from darts import TimeSeries
+import numpy as np
+import matplotlib.pyplot as plt
+from darts.metrics.metrics import mape
+from darts.metrics.metrics import mae
+from darts.metrics.metrics import rmse
+```

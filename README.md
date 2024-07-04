@@ -2,4 +2,6 @@
 
 Project: Forecast GMV
 
-เป็นการสร้าง Machine Learning Model เพื่อการทำนาย GMV 
+เป็นการสร้าง Machine Learning Model เพื่อการทำนาย GMV
+
+Required Library: Darts, Scikit-Learn

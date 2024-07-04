@@ -1,8 +1,9 @@
 # Forecast_GMV_PJ
 
 ## About Project
-  เป็นการสร้าง Machine Learning Model เพื่อการทำนาย GMV โดย Phase 1 จะเป็นการพัฒนา Machine Learning model โดยใช้ Darts Library และ Phase 2 จะเป็นการพัฒนาแบบ Deep Learning model โดยใช้ Tensorflow, Keras
-
+The project involves creating a Machine Learning model to predict GMV (Gross Merchandise Value). It will be carried out in two phases:
+### Phase 1: Development of a Machine Learning Model using Darts Library
+### Phase 2: Development of a Deep Learning Model using TensorFlow and Keras
 ## Require
 Python 3.9-3.12
 ### Library

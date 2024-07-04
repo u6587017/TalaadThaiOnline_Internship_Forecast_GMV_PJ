@@ -7,7 +7,8 @@ The project involves creating a Machine Learning model to predict GMV (Gross Mer
 #### PJ_forecast_GMV_phase2.ipynb: Development of a Deep Learning Model using TensorFlow and Keras
 #### forecast_gmv_06_12_2024.csv: CSV file includes features for GMV forecasting
 - date
-- gmv	quantity
+- gmv
+- quantity
 - total_male
 - total_female
 - total_unknown

@@ -1,6 +1,6 @@
 # Forecast_GMV_PJ
 
-## Project: Forecast GMV
+## About Project
   เป็นการสร้าง Machine Learning Model เพื่อการทำนาย GMV โดย Phase 1 จะเป็นการพัฒนา Machine Learning model โดยใช้ Darts Library และ Phase 2 จะเป็นการพัฒนาแบบ Deep Learning model โดยใช้ Tensorflow, Keras
 
 ## Require

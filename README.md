@@ -6,6 +6,6 @@
 ## Require
 Python 3.9-3.12
 ### Library
-Pandas, Numpy, Matplotlib
-Phase 1 Library: Darts 0.13.0, Scikit-learn 3.8.1
-Phase 2 Library: TensorFlow 2.15.0
+Pandas, Numpy, Matplotlib 
+Phase 1 : Darts 0.13.0, Scikit-learn 3.8.1 
+Phase 2 : TensorFlow 2.15.0

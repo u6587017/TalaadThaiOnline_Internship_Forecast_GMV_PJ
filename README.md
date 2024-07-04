@@ -13,6 +13,7 @@ Pandas, Numpy, Matplotlib
 #### Phase 2 : TensorFlow 2.15.0
 
 ## Phase 1
+Import required library
 ```
 import pandas as pd
 from darts import TimeSeries

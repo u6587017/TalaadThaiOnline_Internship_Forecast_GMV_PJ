@@ -55,6 +55,12 @@ df['gmv'][df['date'] == '2024-06-12'] = 212833
 # Add the new rows using concat
 df = pd.concat([df, new_rows], ignore_index=True)
 ```
+#### Plot GMV
+```
+df['gmv'].plot()
+```
+![ts](https://github.com/u6587017/TalaadThaiOnline_Internship_Forecast_GMV_PJ/assets/108443663/5f357356-30a4-4b12-895a-c1bf96d74ff4)
+
 ### Data Cleaning
 ### Evaluation (Historical_Forecast)
 ### Result

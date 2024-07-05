@@ -209,5 +209,21 @@ We could see from the below attached images
 ##### PACF
 ![pacf](https://github.com/u6587017/TalaadThaiOnline_Internship_Forecast_GMV_PJ/assets/108443663/3498a4b8-d626-4359-b782-97ec2812a297)
 From the images, we could see that they are in the case of stationary.
+#### Make data from Stationary to Non-Stationary
+```
+# สมมติว่ามี DataFrame ชื่อ data ที่มีคอลัมน์ 'value'
+df['gmv_diff'] = df['gmv'].diff()
+df = df.dropna().reset_index(drop=True)
+```
+Use Adfuller
+```
+from statsmodels.tsa.stattools import adfuller
+
+result = adfuller(df['gmv_diff'].dropna())
+print('ADF Statistic: %f' % result[0])
+print('p-value: %f' % result[1])
+
+```
+
 ### Evaluation (Historical_Forecast)
 ### Result

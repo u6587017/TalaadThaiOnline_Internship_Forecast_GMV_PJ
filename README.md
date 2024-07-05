@@ -60,7 +60,44 @@ df = pd.concat([df, new_rows], ignore_index=True)
 df['gmv'].plot()
 ```
 ![ts](https://github.com/u6587017/TalaadThaiOnline_Internship_Forecast_GMV_PJ/assets/108443663/5f357356-30a4-4b12-895a-c1bf96d74ff4)
-
+#### Convert Data Types
+```
+#Covert data types
+df['date'] = pd.to_datetime(df['date'])
+df = df.sort_values(by='date')
+df = df[(df['date'] >= '2023-01-01') & (df['date'] <= '2024-07-04')]
+df.shape
+```
 ### Data Cleaning
+#### Identify and replace outliers based on the Z-score. A common threshold for identifying outliers is a Z-score greater than 3 or less than -3. np.abs(z_scores) > 3 returns a boolean array where True indicates an outlier
+```
+# Function to replace outliers with the mean of the rest of the values
+
+from scipy.stats import zscore
+df1 = df.copy()
+
+
+def replace_outliers_with_mean(df, column_name):
+    # Calculate Z-scores
+    z_scores = zscore(df[column_name])
+    
+    # Identify outliers (using a threshold of 3 for Z-score)
+    outliers = np.abs(z_scores) > 3
+    
+    # Calculate mean of non-outliers
+    mean_non_outliers = df.loc[~outliers, column_name].mean()
+    
+    # Replace outliers with the mean of non-outliers
+    df.loc[outliers, column_name] = mean_non_outliers
+    
+    return df
+
+# Replace outliers in 'gmv' column
+df = replace_outliers_with_mean(df, 'gmv')
+
+# Display the DataFrame
+df[['date', 'gmv']][df['date'] == '2024-06-05']
+```
+
 ### Evaluation (Historical_Forecast)
 ### Result

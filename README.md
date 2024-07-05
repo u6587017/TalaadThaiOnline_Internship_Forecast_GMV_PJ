@@ -330,7 +330,7 @@ Interpretation: A lower RMSE value indicates better model performance. It provid
 ### Result
 ![18_Jun_Historical_Forecast](https://github.com/u6587017/TalaadThaiOnline_Internship_Forecast_GMV_PJ/assets/108443663/120a0ce0-c789-4d7a-94cb-82c07aebfcea)
 ### Hyperparameter Tuning
-Using GridSearch. Darts Library also provide GridSearch, so we could find the best params like lags.
+Hyperparameter Tuning is the process of finding the most effective set of hyperparameters for a machine learning model. Hyperparameters are the parameters that are not learned from the data but set prior to the training process. They control the overall behavior of the training process and the structure of the model. We will use GridSearch. Darts Library also provide GridSearch, so we could find the best params like lags.
 ```
 # from darts.models.forecasting.lgbm import LightGBMModel
 # from darts.models.forecasting.catboost_model import CatBoostModel

@@ -486,7 +486,7 @@ from sklearn import metrics
 from sklearn.metrics import mean_squared_error
 ```
 Then we will use the code since read CSV file - Feature Engineering the same as in Phase 1 <br/>
-## Deep Learning
+### Deep Learning
 After the DataFrame is ready we will create a function to convert DataFrame to Numpy Array for Deep Learning
 ```
 def df_to_X_y (df, window_size=5):
@@ -500,4 +500,15 @@ def df_to_X_y (df, window_size=5):
     y.append(label)
   return np.array(X), np.array(y)
 ```
-
+#### Check numpy array shape
+```
+WINDOW_SIZE = 5
+X, y = df_to_X_y(df['gmv'], WINDOW_SIZE)
+X.shape, y.shape
+```
+#### Split Training/Testing data set as 80%:20%
+```
+X_train, y_train = X[:432], y[:432]
+X_test, y_test = X[432:], y[432:]
+X_train.shape, y_train.shape, X_test.shape, y_test.shape
+```

@@ -115,10 +115,22 @@ df.isnull().sum()
 # เช็ค 0s
 df.eq(0).sum()
 ```
-#### Fill null data with mean of data
+#### Fill null (missing) values with the mean of the data
 ```
 # แทนที่ null ด้วยค่าเฉลี่ย
 df.fillna(df.mean(), inplace=True)
+```
+### Feature Engineering
+Create new features or transform existing ones to improve the performance of machine learning models
+From below code, we create new features from date such as Marketing Campaign
+```
+df['Quarter'] = df['date'].dt.quarter
+df['Month'] = df['date'].dt.month
+df['Weekday'] = df['date'].dt.weekday + 1  # Adding 1 to make it 1-7 (Mon-Sun)
+df['Dayofyear'] = df['date'].dt.dayofyear
+df['double_date'] = df['date'].apply(lambda x: 1 if x.month == x.day else 0)
+df['mid_month'] = df['date'].apply(lambda x: 1 if x.day == 15 else 0)
+df['payday'] = df['date'].apply(lambda x: 1 if x.day>=25 else 0)
 ```
 ### Evaluation (Historical_Forecast)
 ### Result

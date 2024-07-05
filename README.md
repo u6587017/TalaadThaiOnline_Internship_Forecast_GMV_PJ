@@ -28,7 +28,7 @@ Lag features are a fundamental concept in time series analysis and forecasting. 
 In Darts, covariates refer to external data that can be used as inputs to models to help improve forecasts. In the context of forecasting models, the target is the series to be forecasted/predicted, and the covariates themselves are not predicted.
 - Past covariates are (by definition) covariates known only into the past (e.g. measurements)
 - Future covariates are (by definition) covariates known into the future (e.g., weather forecasts)
-![cov](https://github.com/u6587017/TalaadThaiOnline_Internship_Forecast_GMV_PJ/assets/108443663/b45e999c-afb3-43d6-94ad-421c3ce59210)
+![cov](https://github.com/u6587017/TalaadThaiOnline_Internship_Forecast_GMV_PJ/assets/108443663/b45e999c-afb3-43d6-94ad-421c3ce59210)<br />
 If you train a model using past_covariates, you’ll have to provide these past_covariates also at prediction time to predict(). This applies to future_covariates too, with a nuance that future_covariates have to extend far enough into the future at prediction time (all the way to the forecast horizon n). This can be seen in the graph below. past_covariates needs to include at least the same time steps as target, and future_covariates must include at least the same time span plus additional n forecast horizon time steps.
 
 ### Historical Forecast

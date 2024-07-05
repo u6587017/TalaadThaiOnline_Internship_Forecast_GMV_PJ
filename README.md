@@ -14,7 +14,8 @@ The project involves creating a Machine Learning model to predict GMV (Gross Mer
 - total_unknown (per day)
 - total_order(per day)
 ## Prerequisites
-Python 3.9-3.12
+- Python 3.9-3.12
+- Understanding in basic machine learning, lags featuring
 ### Library
 Pandas, Numpy, Matplotlib 
 #### Phase 1 : Darts 0.13.0, Scikit-learn 3.8.1 

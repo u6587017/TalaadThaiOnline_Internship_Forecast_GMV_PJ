@@ -203,10 +203,10 @@ ACF: The autocorrelations decrease slowly and may remain significant for many la
 PACF: The partial autocorrelations can be significant for many lags.
 
 We could see from the below attached images
-![acf](https://github.com/u6587017/TalaadThaiOnline_Internship_Forecast_GMV_PJ/assets/108443663/d548e23a-3794-4ee5-8af5-fef2a5576999)
 ##### ACF
-![pacf](https://github.com/u6587017/TalaadThaiOnline_Internship_Forecast_GMV_PJ/assets/108443663/3498a4b8-d626-4359-b782-97ec2812a297)
+![acf](https://github.com/u6587017/TalaadThaiOnline_Internship_Forecast_GMV_PJ/assets/108443663/d548e23a-3794-4ee5-8af5-fef2a5576999)
 ##### PACF
+![pacf](https://github.com/u6587017/TalaadThaiOnline_Internship_Forecast_GMV_PJ/assets/108443663/3498a4b8-d626-4359-b782-97ec2812a297)
 From the images, we could see that they are in the case of stationary.
 ### Evaluation (Historical_Forecast)
 ### Result

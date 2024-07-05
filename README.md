@@ -485,3 +485,6 @@ import tensorflow as tf
 from sklearn import metrics
 from sklearn.metrics import mean_squared_error
 ```
+Then we will use the same code since data preprocessing, data cleaning and feature engineering
+[Go Read CSV File](#### Read CSV File using Pandas)
+

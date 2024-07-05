@@ -319,3 +319,5 @@ plt.tight_layout()
 plt.show()
 ```
 ### Result
+![18_Jun_Historical_Forecast](https://github.com/u6587017/TalaadThaiOnline_Internship_Forecast_GMV_PJ/assets/108443663/120a0ce0-c789-4d7a-94cb-82c07aebfcea)
+

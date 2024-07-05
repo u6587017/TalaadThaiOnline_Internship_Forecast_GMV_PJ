@@ -422,12 +422,15 @@ best_param = RegressionModel.gridsearch(
 
 ```
 ### Train and use model to Forecast
+- To train model, we will select the best model in each day to fit with the time-series data
+- To forecast, we will use model.predict(length of days we're going to forecast, future_covariates)
+- I also commented the code in case we use gmv_diff which is more non-stationary data to forecast
 ```
 from darts.models.forecasting.lgbm import LightGBMModel
 
 model1= RegressionModel(model=linear_model.Ridge(random_state=42) ,lags=3, lags_future_covariates=(0,7),output_chunk_length=7)
 model1.fit(rescaled['gmv'], future_covariates=future_cov)
-forecast_diff = model1.predict(7, future_covariates=future_cov)
+forecast_diff = model1.predict(7, future_covariates=future_cov) # Forecast 
 forecast_diff = scaler_gmv.inverse_transform(forecast_diff)
 
 # For use GMV_diff 

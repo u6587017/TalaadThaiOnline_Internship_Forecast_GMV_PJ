@@ -22,6 +22,20 @@ Pandas, Numpy, Matplotlib
 
 ## Phase 1 
 ### Import Library
+```
+import pandas as pd
+from darts import TimeSeries
+import numpy as np
+import matplotlib.pyplot as plt
+from darts.metrics.metrics import mape
+from darts.metrics.metrics import mae
+from darts.metrics.metrics import rmse
+```
+#### Read CSV using Pandas
+```
+df =pd.read_csv('./forecast_gmv_06_12_2024.csv')
+df.head()
+```
 ### Data Cleaning
 ### Evaluation (Historical_Forecast)
 ### Result

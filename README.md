@@ -179,8 +179,28 @@ future_cov
 ```
 #### Correlation
 Highly correlated features can provide redundant information to the model
+The Pearson correlation coefficient (r) ranges from -1 to 1:
+- 1 to -0.7 or 0.7 to 1: Strong correlation
+- 0.7 to -0.5 or 0.5 to 0.7: Moderate correlation
+- 0.5 to -0.3 or 0.3 to 0.5: Weak correlation
+- 0.3 to 0.3: Negligible or no correlation
 ```
 df.corr()
 ```
+### Check for stationary data using ACF and PACF
+Stationary data is a type of time series data whose statistical properties, such as mean, variance, and autocorrelation, do not change over time. In other words, the data does not exhibit trends, seasonality, or other time-dependent structures that could affect the consistency of these properties
+```
+from darts.utils.statistics import plot_acf, plot_pacf
+acf = plot_acf(rescaled['gmv'], max_lag=80)
+pacf =plot_pacf(rescaled['gmv'], max_lag=80)
+```
+Stationary Time Series:
+ACF: The autocorrelations drop to zero relatively quickly.
+PACF: The partial autocorrelations also drop to zero quickly.
+
+Non-Stationary Time Series:
+ACF: The autocorrelations decrease slowly and may remain significant for many lags.
+PACF: The partial autocorrelations can be significant for many lags.
+
 ### Evaluation (Historical_Forecast)
 ### Result

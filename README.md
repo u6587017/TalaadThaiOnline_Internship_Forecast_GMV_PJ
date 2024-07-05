@@ -421,3 +421,31 @@ best_param = RegressionModel.gridsearch(
     )
 
 ```
+### Train and use model to Forecast
+```
+from darts.models.forecasting.lgbm import LightGBMModel
+
+model1= RegressionModel(model=linear_model.Ridge(random_state=42) ,lags=3, lags_future_covariates=(0,7),output_chunk_length=7)
+model1.fit(rescaled['gmv'], future_covariates=future_cov)
+forecast_diff = model1.predict(7, future_covariates=future_cov)
+forecast_diff = scaler_gmv.inverse_transform(forecast_diff)
+
+# For use GMV_diff 
+
+# forecast_diff_df = forecast_diff.pd_dataframe().reset_index()
+# forecast_diff_df.columns = ['Date', 'Forecast']
+
+# Invert differencing to get the original GMV forecast
+# last_known_gmv = df['gmv'].iloc[-1]
+# forecast_diff_df['Forecast'] = np.cumsum(forecast_diff_df['Forecast']) + last_known_gmv
+
+# Combine Date and Forecast into the final DataFrame
+# forecast_gmv = pd.DataFrame({
+#     'Date': forecast_diff_df['Date'],
+#     'Forecast': forecast_diff_df['Forecast']
+# })
+
+# Display the forecasted GMV
+# forecast_gmv
+forecast_diff.pd_dataframe()
+```

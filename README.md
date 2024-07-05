@@ -37,7 +37,8 @@ df =pd.read_csv('./forecast_gmv_06_12_2024.csv')
 df.head()
 ```
 #### Update GMV (Every day)
-Add new date into 'date' column and new gmv into 'gmv' column
+- Add new date into 'date' column and new GMV into 'gmv' column
+- We have to update GMV on 2024-06-12 since it was the day we query, so we want to ensure that the GMV reflects the complete data for that day.
 ```
 # Update gmv each day after query
 

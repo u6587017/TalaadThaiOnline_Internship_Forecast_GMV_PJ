@@ -485,6 +485,6 @@ import tensorflow as tf
 from sklearn import metrics
 from sklearn.metrics import mean_squared_error
 ```
-Then we will use the same code since read CSV file - Feature Engineering like we did in Phase 1
+Then we will use the code since read CSV file - Feature Engineering the same as in Phase 1
 
 

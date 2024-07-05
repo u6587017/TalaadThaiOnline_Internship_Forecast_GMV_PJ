@@ -320,13 +320,13 @@ plt.show()
 ```
 ### Result
 We could evaluate from 3 metrics
-- MAE calculates the average absolute difference between the actual values and the predicted values. It gives an idea of how much the predictions deviate from the actual values on average. Interpretation: A lower MAE value indicates better model performance. It is easy to understand and interpret.
+- MAE calculates the average absolute difference between the actual values and the predicted values. It gives an idea of how much the predictions deviate from the actual values on average. Interpretation: A lower MAE value indicates better model performance. It is easy to understand and interpret. <br />
 ![mean-absolute-error-formula](https://github.com/u6587017/TalaadThaiOnline_Internship_Forecast_GMV_PJ/assets/108443663/202b4562-3b04-4aa3-8a08-784c238e1728)
-- MAPE measures the average absolute percentage difference between the actual values and the predicted values. It is scale-independent and gives a percentage error, which is useful for comparing forecast accuracy across different datasets. Interpretation: A lower MAPE value indicates better model performance. It is intuitive but can be problematic when actual values are close to zero, leading to extremely high percentage errors.
+- MAPE measures the average absolute percentage difference between the actual values and the predicted values. It is scale-independent and gives a percentage error, which is useful for comparing forecast accuracy across different datasets. Interpretation: A lower MAPE value indicates better model performance. It is intuitive but can be problematic when actual values are close to zero, leading to extremely high percentage errors.<br />
 ![mape](https://github.com/u6587017/TalaadThaiOnline_Internship_Forecast_GMV_PJ/assets/108443663/8f8d1ae8-d045-4cdd-a049-284a43617870)
 - RMSE calculates the square root of the average squared differences between the actual values and the predicted values.
 It is sensitive to outliers because it squares the errors, which can disproportionately affect the RMSE if large errors are present.
-Interpretation: A lower RMSE value indicates better model performance. It provides a good measure of how accurately the model predicts the target variable.
+Interpretation: A lower RMSE value indicates better model performance. It provides a good measure of how accurately the model predicts the target variable.<br />
 ![RMSE-equation](https://github.com/u6587017/TalaadThaiOnline_Internship_Forecast_GMV_PJ/assets/108443663/5b15ff11-cea4-4c45-82a6-662fb26979e5)
 ![18_Jun_Historical_Forecast](https://github.com/u6587017/TalaadThaiOnline_Internship_Forecast_GMV_PJ/assets/108443663/120a0ce0-c789-4d7a-94cb-82c07aebfcea)
 ### Hyperparameter Tuning

@@ -132,5 +132,21 @@ df['double_date'] = df['date'].apply(lambda x: 1 if x.month == x.day else 0)
 df['mid_month'] = df['date'].apply(lambda x: 1 if x.day == 15 else 0)
 df['payday'] = df['date'].apply(lambda x: 1 if x.day>=25 else 0)
 ```
+In this code, we will make df2 with copying of only extracted feature from df for an easier to use. We will see it shortly 
+```
+date_range = pd.date_range(start='2023-01-01', end='2024-12-31', freq='D')
+
+# Create a DataFrame with the date range
+df2 = pd.DataFrame(date_range, columns=['date'])
+
+# Feature engineering from Date
+df2['Quarter'] = df2['date'].dt.quarter
+df2['Month'] = df2['date'].dt.month
+df2['Weekday'] = df2['date'].dt.weekday + 1  # Adding 1 to make it 1-7 (Mon-Sun)
+df2['Dayofyear'] = df2['date'].dt.dayofyear
+df2['double_date'] = df['date'].apply(lambda x: 1 if x.month == x.day else 0)
+df2['mid_month'] = df['date'].apply(lambda x: 1 if x.day == 15 else 0)
+df2['payday'] = df['date'].apply(lambda x: 1 if x.day>=25 else 0)
+```
 ### Evaluation (Historical_Forecast)
 ### Result

@@ -21,4 +21,7 @@ Pandas, Numpy, Matplotlib
 #### Phase 2 : TensorFlow 2.15.0
 
 ## Phase 1 
-### Performances
+### Import Library
+### Data Cleaning
+### Evaluation (Historical_Forecast)
+### Result

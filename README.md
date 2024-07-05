@@ -16,6 +16,11 @@ The project involves creating a Machine Learning model to predict GMV (Gross Mer
 ## Prerequisites
 - Python 3.9-3.12
 - Understanding in basic machine learning, lags featuring
+## Basic knowledge
+### Lags featuring
+![Screenshot 2024-07-05 131315](https://github.com/u6587017/TalaadThaiOnline_Internship_Forecast_GMV_PJ/assets/108443663/24aea135-89bb-40fc-9639-aa919a3edf45)
+### Histoical Forecast
+![historical_forecast](https://github.com/u6587017/TalaadThaiOnline_Internship_Forecast_GMV_PJ/assets/108443663/d5a89563-f728-4f82-9d9f-3a0ef9153c39)
 ### Library
 Pandas, Numpy, Matplotlib 
 #### Phase 1 : Darts 0.13.0, Scikit-learn 3.8.1 

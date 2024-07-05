@@ -25,8 +25,11 @@ Darts is a Python library for user-friendly forecasting and anomaly detection on
 Lag features are a fundamental concept in time series analysis and forecasting. They involve using previous time points in the series as input features for predicting future values. Lag features are created by shifting the time series data backward by a certain number of periods (lags). Each lag represents the value of the time series at a previous time step.
 ![Screenshot 2024-07-05 131315](https://github.com/u6587017/TalaadThaiOnline_Internship_Forecast_GMV_PJ/assets/108443663/24aea135-89bb-40fc-9639-aa919a3edf45)
 ### Covariates in Darts
-In Darts, covariates refer to external data that can be used as inputs to models to help improve forecasts. In the context of forecasting models, the target is the series to be forecasted/predicted, and the covariates themselves are not predicted. We distinguish three kinds of covariates:
+In Darts, covariates refer to external data that can be used as inputs to models to help improve forecasts. In the context of forecasting models, the target is the series to be forecasted/predicted, and the covariates themselves are not predicted.
+- Past covariates are (by definition) covariates known only into the past (e.g. measurements)
+- Future covariates are (by definition) covariates known into the future (e.g., weather forecasts)
 ![cov](https://github.com/u6587017/TalaadThaiOnline_Internship_Forecast_GMV_PJ/assets/108443663/b45e999c-afb3-43d6-94ad-421c3ce59210)
+If you train a model using past_covariates, you’ll have to provide these past_covariates also at prediction time to predict(). This applies to future_covariates too, with a nuance that future_covariates have to extend far enough into the future at prediction time (all the way to the forecast horizon n). This can be seen in the graph below. past_covariates needs to include at least the same time steps as target, and future_covariates must include at least the same time span plus additional n forecast horizon time steps.
 
 ### Historical Forecast
 In the context of time series forecasting with the Darts library, a historical forecast typically refers to generating forecasts for multiple points in time, often using a rolling or expanding window approach. This method is used to simulate how a model would perform in real-time forecasting by making predictions at several time steps in the past and comparing them with the actual values

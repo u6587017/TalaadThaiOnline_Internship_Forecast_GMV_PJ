@@ -471,3 +471,17 @@ forecast_diff = scaler_gmv.inverse_transform(forecast_diff)
 # forecast_gmv
 forecast_diff.pd_dataframe()
 ```
+## Phase 2
+In this phase, I'm going to implement the Deep Learning model.
+### Import Library
+```
+import pandas as pd
+import numpy as np
+import datetime as dt
+import matplotlib.pyplot as plt
+import math
+
+import tensorflow as tf
+from sklearn import metrics
+from sklearn.metrics import mean_squared_error
+```

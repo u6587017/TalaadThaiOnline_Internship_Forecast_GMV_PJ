@@ -31,10 +31,27 @@ from darts.metrics.metrics import mape
 from darts.metrics.metrics import mae
 from darts.metrics.metrics import rmse
 ```
-#### Read CSV using Pandas
+#### Read CSV File using Pandas
 ```
 df =pd.read_csv('./forecast_gmv_06_12_2024.csv')
 df.head()
+```
+#### Update GMV (Every day)
+```
+# Update gmv each day after query
+
+new_rows = pd.DataFrame({
+    'date': [pd.to_datetime('2024-06-13'), pd.to_datetime('2024-06-14'), pd.to_datetime('2024-06-15'), pd.to_datetime('2024-06-16'), pd.to_datetime('2024-06-17'), pd.to_datetime('2024-06-18'),
+             pd.to_datetime('2024-06-19'), pd.to_datetime('2024-06-20'), pd.to_datetime('2024-06-21'), pd.to_datetime('2024-06-22'), pd.to_datetime('2024-06-23'), pd.to_datetime('2024-06-24'),
+             pd.to_datetime('2024-06-25'),pd.to_datetime('2024-06-26'),pd.to_datetime('2024-06-27'),pd.to_datetime('2024-06-28'),pd.to_datetime('2024-06-29'),pd.to_datetime('2024-06-30'),pd.to_datetime('2024-07-01'),
+             pd.to_datetime('2024-07-02'), pd.to_datetime('2024-07-03')
+             ],
+    'gmv': [211619, 210396, 232173, 208262, 162534, 200252, 208692, 190115, 232990, 207749, 196004, 229341, 225226 ,246038, 214500 , 218507, 193665, 242967, 218320,229796 ,251898]
+})
+df['gmv'][df['date'] == '2024-06-12'] = 212833
+
+# Add the new rows using concat
+df = pd.concat([df, new_rows], ignore_index=True)
 ```
 ### Data Cleaning
 ### Evaluation (Historical_Forecast)

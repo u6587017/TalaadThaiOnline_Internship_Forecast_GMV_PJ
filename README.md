@@ -148,5 +148,39 @@ df2['double_date'] = df['date'].apply(lambda x: 1 if x.month == x.day else 0)
 df2['mid_month'] = df['date'].apply(lambda x: 1 if x.day == 15 else 0)
 df2['payday'] = df['date'].apply(lambda x: 1 if x.day>=25 else 0)
 ```
+### Convert Dataframe type of Pandas into Timeseries type of Darts Library
+```
+data_ts = TimeSeries.from_dataframe(df, time_col="date")
+# data_ts2 = TimeSeries.from_dataframe(df1, time_col="date")
+# future_cov = TimeSeries.from_dataframe(df2, 'date', ['double_date', 'mid_month', 'payday'])
+# future_cov = TimeSeries.from_dataframe(df2, 'date', ['Quarter',	'Month','Weekday','Dayofyear'])
+# future_cov = TimeSeries.from_dataframe(df2, 'date', ['Month','Weekday','Dayofyear'])
+# future_cov = TimeSeries.from_dataframe(df2, 'date', ['double_date'])
+future_cov = TimeSeries.from_dataframe(df2, 'date', ['Weekday','Dayofyear','payday'])
+# future_cov = TimeSeries.from_dataframe(df2, 'date', ['Quarter',	'Month','Weekday','Dayofyear','double_date', 'mid_month', 'payday'])
+```
+You can also fillna with Timeseries data type in Darts
+```
+from darts.utils.missing_values import fill_missing_values
+future_cov = fill_missing_values(future_cov, fill='auto')
+```
+## Scaler (Optional)
+Scaler in Darts is MinMaxScaler. MinMaxScaler is a feature scaling technique in data preprocessing that transforms features by scaling each feature to a given range, typically between 0 and 1.
+MinMaxScaler is used to normalize the features in a dataset, which ensures that each feature contributes equally to the result and prevents features with larger ranges from dominating the model.
+```
+from darts.dataprocessing.transformers import Scaler
+
+scaler_gmv = Scaler()
+scaler_cov = Scaler()
+
+rescaled = scaler_gmv.fit_transform(data_ts['gmv'])
+future_cov = scaler_cov.fit_transform(future_cov)
+future_cov
+```
+#### Correlation
+Highly correlated features can provide redundant information to the model
+```
+df.corr()
+```
 ### Evaluation (Historical_Forecast)
 ### Result

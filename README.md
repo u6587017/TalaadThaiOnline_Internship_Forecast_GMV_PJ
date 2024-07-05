@@ -226,4 +226,96 @@ print('p-value: %f' % result[1])
 ```
 
 ### Evaluation (Historical_Forecast)
+Select models to do Historical_Forecast  
+```
+from darts.models.forecasting.catboost_model import CatBoostModel
+from darts.models.forecasting.lgbm import LightGBMModel
+from sklearn.ensemble import RandomForestRegressor
+from darts.models.forecasting.regression_model import RegressionModel
+from darts.models.forecasting.exponential_smoothing import ExponentialSmoothing
+from darts.models.forecasting.random_forest import RandomForest
+from sklearn.linear_model import LinearRegression
+from darts.models.forecasting.xgboost import XGBModel
+from darts.utils.utils import ModelMode, SeasonalityMode
+from darts.models.forecasting.arima import ARIMA
+from sklearn.linear_model import ElasticNetCV
+
+# List of models configurations
+models = [
+    LightGBMModel(random_state=42, lags=7, lags_future_covariates=(0,7), output_chunk_length=7,show_warnings=False,verbose=-1),
+    # CatBoostModel(random_state=42, lags=7, output_chunk_length=7, lags_future_covariates=(0,7)),
+    RegressionModel(model=LinearRegression() ,lags=3, lags_future_covariates=(0,7),output_chunk_length=7,),
+    RegressionModel(model=RandomForestRegressor(max_depth=9, n_estimators=300, random_state=42),lags=7, lags_future_covariates=(0,7),output_chunk_length=7,),
+    ExponentialSmoothing(trend=ModelMode.NONE, damped=False, seasonal=SeasonalityMode.ADDITIVE, seasonal_periods=7,),
+    XGBModel(random_state=42, lags=14, lags_future_covariates=(0,7), output_chunk_length=7, ),
+    ARIMA(p=0, d=0, q=1, seasonal_order=(1, 0, 2, 12), trend=None, random_state=42),
+        ]
+model_name = [  'LightGBMModel',
+                'LinearRegression',
+                  'RandomForestRegressor',
+                    'ExponentialSmoothing', 'XGBModel',
+                    'ARIMA'
+                  ]
+i = 0
+
+# Setting up the plot
+fig, axes = plt.subplots(nrows=len(models), ncols=1, figsize=(12, 6 * len(models)))
+if len(models) == 1:
+    axes = [axes]  # Make axes iterable if there's only one model
+
+# Loop through models and plot each one
+for model, ax in zip(models, axes):
+    if (i == 3):
+        historical_forecasts = model.historical_forecasts(
+        series=rescaled['gmv'],
+        start=0.8,  # Start generating historical forecasts after 80% of the data
+        forecast_horizon=1,  # Forecast horizon (number of steps to forecast)
+        stride=1,  # Make a forecast every time step
+        retrain=True,  # Retrain the model at each step
+        verbose=True,
+    )
+    else:
+    # Generate historical forecasts
+        historical_forecasts = model.historical_forecasts(
+            series=rescaled['gmv'],
+            start=0.8,  # Start generating historical forecasts after 80% of the data
+            forecast_horizon=1,  # Forecast horizon (number of steps to forecast)
+            stride=1,  # Make a forecast every time step
+            retrain=True,  # Retrain the model at each step
+            verbose=True,
+            future_covariates=future_cov
+        )
+
+    # last_known_gmv = df['gmv'].iloc[-1]
+
+    original = scaler_gmv.inverse_transform(historical_forecasts['gmv'])
+    # original = historical_forecasts['gmv_diff']
+#     original = original.pd_dataframe().reset_index()
+#     original.columns = ['date', 'gmv_diff']
+
+#     original['gmv_diff'] = np.cumsum(original['gmv_diff']) + last_known_gmv
+
+#     # Combine Date and Forecast into the final DataFrame
+#     forecast_gmv = pd.DataFrame({
+#         'date': original['date'],
+#         'gmv': original['gmv_diff']
+# })
+#     forecast_gmv = TimeSeries.from_dataframe(forecast_gmv, time_col="date")
+
+    # Calculate metrics
+    hf_mae = mae(validation_ori['gmv'], original)
+    hf_mape = mape(validation_ori['gmv'], original)
+    hf_rmse = rmse(validation_ori['gmv'], original)
+
+    # Plot the results
+    # training['gmv_diff'].plot(label='Actual Data', ax=ax)
+    data_ts['gmv'].plot(label='GMV', ax=ax)
+    validation_ori['gmv'].plot(label='Validation Data', ax=ax)
+    original.plot(label=f'Historical Forecasts (MAE: {hf_mae:.2f}, MAPE: {hf_mape:.2f}%, RMSE: {hf_rmse:.2f})', ax=ax)
+    ax.legend()
+    ax.set_title(f'{model_name[i]} Accuracy: {100-hf_mape:.2f}')
+    i += 1
+plt.tight_layout()
+plt.show()
+```
 ### Result

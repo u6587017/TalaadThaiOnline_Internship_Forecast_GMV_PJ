@@ -320,4 +320,95 @@ plt.show()
 ```
 ### Result
 ![18_Jun_Historical_Forecast](https://github.com/u6587017/TalaadThaiOnline_Internship_Forecast_GMV_PJ/assets/108443663/120a0ce0-c789-4d7a-94cb-82c07aebfcea)
+### Hyperparameter Tuning
+Using GridSearch. Darts Library also provide GridSearch, so we could find the best params like lags.
+```
+# from darts.models.forecasting.lgbm import LightGBMModel
+# from darts.models.forecasting.catboost_model import CatBoostModel
+# from sklearn.ensemble import RandomForestRegressor
+# from darts.models.forecasting.regression_model import RegressionModel
+# from darts.models.forecasting.exponential_smoothing import ExponentialSmoothing
+# from darts.models.forecasting.linear_regression_model import LinearRegressionModel
+# from darts.models.forecasting.random_forest import RandomForest
+# from darts.models.forecasting.xgboost import XGBModel
+# from darts.utils.utils import ModelMode, SeasonalityMode
+# from sklearn.ensemble import RandomForestRegressor
+# from darts.models.forecasting.arima import ARIMA
+#LightGBM
+# parameters = {
+#     'lags': [1,3,7,14,21,28,30],
+#     'lags_future_covariates': [(0,7)],
+#     'output_chunk_length': [7],
+#     'show_warnings': [False],
+#     'verbose': [-1],
+#     'likelihood':['quantile', 'poisson'],
+#     'output_chunk_shift': [0,1,2,3]
+# }
 
+#RNDForest
+# parameters = {
+#     'lags': [1,2,3,7,14,21,30],
+#     'lags_future_covariates': [(0,7)],
+#     'output_chunk_length': [7],
+#     'output_chunk_shift' : [0,1,3,5],
+#     'max_depth': [3,5,7,9,11],
+#     'n_estimators': [100,200, 300]
+# }
+
+#Catboost
+# parameters = {
+#     'lags': [7,14,21,28,30,31],
+#     'lags_future_covariates': [(0,7)],
+#     'output_chunk_length': [7]
+# }
+
+#XGBoost
+# parameters = {
+#     'lags': [3,7,14,21,28,30,31],
+#     'lags_future_covariates': [(0,7)],
+#     'output_chunk_length': [7],
+#     'random_state': [42]
+# } #Lags=14
+
+# ExponentialSmoothing
+# parameters = {
+#     'trend': [ModelMode.ADDITIVE, ModelMode.NONE],
+#     'seasonal': [SeasonalityMode.ADDITIVE, SeasonalityMode.NONE],
+#     'seasonal_periods': [7],
+#     'random_state': [42]
+# } # ADDITIVE 40.86087049269774 |
+
+#Regression
+parameters = {
+    'model': [linear_model.Ridge(random_state=42)
+     ],
+    'lags': [3,7,14,21,28,30,31],
+    'lags_future_covariates': [(0,7)],
+    'output_chunk_length': [7]
+}
+
+#ARIMA #{'p': 0, 'd': 0, 'q': 1}, #
+# parameters = {
+#     'p': [0],
+#     'd':[0],
+#     'q': [1],
+#     'seasonal_order': [(0, 0, 0, 12), (0, 0, 1, 12), (0, 0, 2, 12), (0, 1, 0, 12), (0, 1, 1, 12), (0, 1, 2, 12), (0, 2, 0, 12), (0, 2, 1, 12), (0, 2, 2, 12),
+#  (1, 0, 0, 12), (1, 0, 1, 12), (1, 0, 2, 12), (1, 1, 0, 12), (1, 1, 1, 12), (1, 1, 2, 12), (1, 2, 0, 12), (1, 2, 1, 12), (1, 2, 2, 12),
+#  (2, 0, 0, 12), (2, 0, 1, 12), (2, 0, 2, 12), (2, 1, 0, 12), (2, 1, 1, 12), (2, 1, 2, 12), (2, 2, 0, 12), (2, 2, 1, 12), (2, 2, 2, 12)]
+
+    # 'random_state': [42]
+# }
+
+best_param = RegressionModel.gridsearch(
+    parameters=parameters,
+    series=target,
+    start=0.8,  # Start generating historical forecasts after 80% of the data
+    forecast_horizon=7,  # Forecast horizon (number of steps to forecast)
+    stride=7,  # Make a forecast every time step
+    metric = mape,
+    future_covariates=future_cov,
+    reduction=np.mean,
+    verbose=1,
+    )
+
+```

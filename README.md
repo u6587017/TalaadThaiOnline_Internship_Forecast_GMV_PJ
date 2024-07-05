@@ -485,6 +485,19 @@ import tensorflow as tf
 from sklearn import metrics
 from sklearn.metrics import mean_squared_error
 ```
-Then we will use the code since read CSV file - Feature Engineering the same as in Phase 1
-
+Then we will use the code since read CSV file - Feature Engineering the same as in Phase 1 <br/>
+## Deep Learning
+After the DataFrame is ready we will create a function to convert DataFrame to Numpy Array for Deep Learning
+```
+def df_to_X_y (df, window_size=5):
+  df_as_np = df.to_numpy()
+  X = []
+  y = []
+  for i in range(len(df_as_np)-window_size):
+    row = [[a] for a in df_as_np[i:i+window_size]]
+    X.append(row)
+    label = df_as_np[i+window_size]
+    y.append(label)
+  return np.array(X), np.array(y)
+```
 

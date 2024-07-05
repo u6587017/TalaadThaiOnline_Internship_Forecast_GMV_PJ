@@ -189,6 +189,7 @@ df.corr()
 ```
 ### Check for stationary data using ACF and PACF
 Stationary data is a type of time series data whose statistical properties, such as mean, variance, and autocorrelation, do not change over time. In other words, the data does not exhibit trends, seasonality, or other time-dependent structures that could affect the consistency of these properties
+Models typically perform better with stationary data rather than non-stationary data. So, we could try to make the data non-stationary and we can we can see which one perform better
 ```
 from darts.utils.statistics import plot_acf, plot_pacf
 acf = plot_acf(rescaled['gmv'], max_lag=80)

@@ -17,6 +17,10 @@ The project involves creating a Machine Learning model to predict GMV (Gross Mer
 - Python 3.9-3.12
 - Understanding in basic machine learning, lags featuring
 ## Basic knowledge
+### Darts
+Darts is a Python library for user-friendly forecasting and anomaly detection on time series. It contains a variety of models, from classics such as ARIMA to deep neural networks. The forecasting models can all be used in the same way, using fit() and predict() functions, similar to scikit-learn. The library also makes it easy to backtest models, combine the predictions of several models, and take external data into account.
+![darts_unit8](https://github.com/u6587017/TalaadThaiOnline_Internship_Forecast_GMV_PJ/assets/108443663/9970cfd5-23bd-4f1d-8691-aead61ef8ebb)
+![darts](https://github.com/u6587017/TalaadThaiOnline_Internship_Forecast_GMV_PJ/assets/108443663/d57bbe15-013c-4433-9807-61fe1b98c6a5)
 ### Lags feature
 Lag features are a fundamental concept in time series analysis and forecasting. They involve using previous time points in the series as input features for predicting future values. Lag features are created by shifting the time series data backward by a certain number of periods (lags). Each lag represents the value of the time series at a previous time step.
 ![Screenshot 2024-07-05 131315](https://github.com/u6587017/TalaadThaiOnline_Internship_Forecast_GMV_PJ/assets/108443663/24aea135-89bb-40fc-9639-aa919a3edf45)

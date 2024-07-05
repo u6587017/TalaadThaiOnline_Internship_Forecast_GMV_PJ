@@ -60,6 +60,7 @@ df = pd.concat([df, new_rows], ignore_index=True)
 df['gmv'].plot()
 ```
 ![ts](https://github.com/u6587017/TalaadThaiOnline_Internship_Forecast_GMV_PJ/assets/108443663/5f357356-30a4-4b12-895a-c1bf96d74ff4)
+### Data Cleaning
 #### Convert Data Types
 ```
 #Covert data types
@@ -68,8 +69,9 @@ df = df.sort_values(by='date')
 df = df[(df['date'] >= '2023-01-01') & (df['date'] <= '2024-07-04')]
 df.shape
 ```
-### Data Cleaning
-#### Identify and replace outliers based on the Z-score. A common threshold for identifying outliers is a Z-score greater than 3 or less than -3. np.abs(z_scores) > 3 returns a boolean array where True indicates an outlier
+#### Check Data Types
+#### Outlier
+Identify and replace outliers based on the Z-score. A common threshold for identifying outliers is a Z-score greater than 3 or less than -3. np.abs(z_scores) > 3 returns a boolean array where True indicates an outlier
 ```
 # Function to replace outliers with the mean of the rest of the values
 
@@ -98,6 +100,25 @@ df = replace_outliers_with_mean(df, 'gmv')
 # Display the DataFrame
 df[['date', 'gmv']][df['date'] == '2024-06-05']
 ```
-
+#### Replace Null data with mean of data
+```
+# แทนที่ null ด้วยค่าเฉลี่ย
+df.fillna(df.mean(), inplace=True)
+```
+#### Check Null
+```
+# เช็ค Null
+df.isnull().sum()
+```
+#### Check 0's 
+```
+# เช็ค 0s
+df.eq(0).sum()
+```
+#### Fill null data with mean of data
+```
+# แทนที่ null ด้วยค่าเฉลี่ย
+df.fillna(df.mean(), inplace=True)
+```
 ### Evaluation (Historical_Forecast)
 ### Result

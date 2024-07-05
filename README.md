@@ -194,11 +194,11 @@ from darts.utils.statistics import plot_acf, plot_pacf
 acf = plot_acf(rescaled['gmv'], max_lag=80)
 pacf =plot_pacf(rescaled['gmv'], max_lag=80)
 ```
-Stationary Time Series:
+- Stationary Time Series:
 ACF: The autocorrelations drop to zero relatively quickly.
 PACF: The partial autocorrelations also drop to zero quickly.
 
-Non-Stationary Time Series:
+- Non-Stationary Time Series:
 ACF: The autocorrelations decrease slowly and may remain significant for many lags.
 PACF: The partial autocorrelations can be significant for many lags.
 

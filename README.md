@@ -226,7 +226,7 @@ print('p-value: %f' % result[1])
 ```
 
 ### Evaluation (Historical_Forecast)
-Select models to do Historical_Forecast  
+Select models to do Historical_Forecast, it will plot actual data (black line), validation data (blue line), forecast data (pink line) and the metrics at the title of each model figure
 ```
 from darts.models.forecasting.catboost_model import CatBoostModel
 from darts.models.forecasting.lgbm import LightGBMModel

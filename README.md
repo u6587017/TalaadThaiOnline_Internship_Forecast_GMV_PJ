@@ -232,7 +232,7 @@ print('p-value: %f' % result[1])
 
 ```
 
-### Evaluation (Historical_Forecast)
+### Evaluation
 We could evaluate from 3 metrics
 - MAE calculates the average absolute difference between the actual values and the predicted values. It gives an idea of how much the predictions deviate from the actual values on average. Interpretation: A lower MAE value indicates better model performance. It is easy to understand and interpret.
 <br />![mean-absolute-error-equation](https://github.com/u6587017/TalaadThaiOnline_Internship_Forecast_GMV_PJ/assets/108443663/70a2a27c-40a2-4a47-a0a4-4fc1a789af89)

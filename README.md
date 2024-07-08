@@ -13,7 +13,7 @@ The project involves creating a Machine Learning model to predict GMV (Gross Mer
   - [HyperParameter Tuning](#hyper)
   - [Model Evaluation](#evaluation)
   - [Result](#result)
-  - [Model selection and forecasting](#train)
+  - [Model selection, training and forecasting](#train)
 - [Phase 2](#phase_2)
   - [Import Library](#lib2)
   - [Convert DataFrame to Numpy (Use 1 feature for trainng)](1_feature)

@@ -14,6 +14,15 @@ The project involves creating a Machine Learning model to predict GMV (Gross Mer
   - [Model Evaluation](#evaluation)
   - [Result](#result)
   - [Model selection and forecasting](#train)
+- [Phase 2](#phase_2)
+  - [Import Library](#lib2)
+  - [Convert DataFrame to Numpy (Use 1 feature for trainng)](1_feature)
+  - [Convert DataFrame to Numpy (Use multiple features for trainng)](multiple_feature)
+  - [Scaling](#standardize)
+  - [Define sequential model](#seq_model)
+  - [Model Training](#train_2)
+  - [Evaluation](#eval_2)
+  - [Result](#result_2)
 ### Files
 #### PJ_forecast_GMV_phase1.ipynb: Development of a Machine Learning Model using Darts Library<br />[Clickhere to Phase 1](#phase_1)
 #### PJ_forecast_GMV_phase2.ipynb: Development of a Deep Learning Model using TensorFlow and Keras<br />[Clickhere to Phase 2](#phase_2)
@@ -488,8 +497,8 @@ forecast_diff = scaler_gmv.inverse_transform(forecast_diff)
 forecast_diff.pd_dataframe()
 ```
 ## <a name="phase_2"></a>Phase 2
-In this phase, I'm going to implement the Deep Learning model.
-### Import Library
+In this phase, I'm going to implement the Deep Learning model using Tensorflow and Keras
+### <a name="lib2"></a>Import Library
 ```
 import pandas as pd
 import numpy as np
@@ -504,7 +513,7 @@ from sklearn.metrics import mean_squared_error
 Then we will use the code since read CSV file - Feature Engineering the same as in Phase 1 <br/>
 ### Deep Learning
 After the DataFrame is ready we will create a function to convert DataFrame to Numpy Array for Deep Learning
-#### Function to convert DataFrame to Numpy array (1 feature)
+#### <a name="1_feature"></a>Function to convert DataFrame to Numpy array (1 feature)
 ```
 # [ [ [g1],[g2],[g3],[g4],[g5] ] ] [g6]
 # [ [ [g2],[g3],[g4],[g5],[g6] ] ] [g7]
@@ -538,7 +547,7 @@ X_train, y_train = X[:432], y[:432]
 X_test, y_test = X[432:], y[432:]
 X_train.shape, y_train.shape, X_test.shape, y_test.shape
 ```
-#### Function to convert DataFrame to Numpy array (multiple features)
+#### <a name="multiple_features"></a>Function to convert DataFrame to Numpy array (multiple features)
 ```
 # [ [ [g1, q1, g3],[g2, q1],[g3, q1],[g4, q1],[g5, q1] ] ] ==> [g6]
 
@@ -568,7 +577,7 @@ X2_train, y2_train = X2[:int(len(df)*0.8)], y2[:int(len(df)*0.8)]
 X2_test, y2_test = X2[int(len(df)*0.8):], y2[int(len(df)*0.8):]
 X2_train.shape, y2_train.shape, X2_test.shape, y2_test.shape
 ```
-#### Standardization
+#### <a name="standardize"></a>Standardization
 Standardization คือกระบวนการในขั้นตอนการเตรียมข้อมูลที่ใช้ปรับขนาดคุณลักษณะ (features) ให้มีค่าเฉลี่ยเป็น 0 และส่วนเบี่ยงเบนมาตรฐานเป็น 1 การทำเช่นนี้เพื่อให้ feature แต่ละตัวมีส่วนร่วมใน model อย่างเท่าเทียมกันและเพื่อปรับปรุงประสิทธิภาพและความเสถียรในการฝึกของอัลกอริทึมการเรียนรู้ของเครื่อง<br />
 <br />
 Standardization is a process in data preprocessing where the features are rescaled so that they have a mean of 0 and a standard deviation of 1. This is done to ensure that each feature contributes equally to the model and to improve the performance and training stability of machine learning algorithms.
@@ -584,7 +593,7 @@ def preprocess_output(y):
   y = (y - gmv_training_mean) / gmv_training_std
   return y
 ```
-#### Compiles a Sequential model using Keras for time series forecasting
+#### <a name="seq_model"></a>Compiles a Sequential model using Keras for time series forecasting
 ```
 model4 = Sequential()
 model4.add(InputLayer(input_shape=(7, 13)))
@@ -596,7 +605,7 @@ model4.add(Dense(1, 'linear'))
 model4.summary()
 model4.compile(loss='mse', optimizer=Adam(learning_rate=0.0001), metrics=[RootMeanSquaredError()])
 ```
-#### Training model
+#### <a name="train_2"></a>Training model
 ฝึกโมเดล model4 โดยใช้เมธอด fit กับข้อมูลการฝึก X2_train และ y2_train เป็นเวลา 20 รอบการฝึก (epochs) เมธอด fit จะคืนค่า history ซึ่งประกอบด้วยรายละเอียดเกี่ยวกับกระบวนการฝึก<br />
 <br />
 Trains the model4 using the fit method with the training data X2_train and y2_train for 20 epochs. The fit method returns a history object which contains details about the training process.
@@ -619,7 +628,7 @@ from sklearn.metrics import mean_squared_error, mean_absolute_error, mean_absolu
 from math import sqrt
 df2 = df.copy()
 
-### Evaluation
+### <a name="eval_2"></a>Evaluation
 #### Function to predict the validate data
 ```
 def plot_predictions2(model, X, y, l):
@@ -637,7 +646,7 @@ def plot_predictions2(model, X, y, l):
     plt.legend()
     return df.tail(7)
 ```
-#### Call plot_prediction function
+#### <a name="result_2"></a>Call plot_prediction function
 Will show date, predicted GMV, actual GMV and Time-series graph 
 ```
 plot_predictions2(model4, X2_test, y2_test, 'LSTM')

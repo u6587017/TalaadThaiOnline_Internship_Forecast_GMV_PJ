@@ -44,7 +44,7 @@ The project involves creating a Machine Learning model to predict GMV (Gross Mer
 ## Prerequisites
 - Python 3.9-3.12
 - Understanding in basic machine learning, lags featuring
-- <a href="https://unit8co.github.io/darts/quickstart/00-quickstart.html"></a>Darts Library Install
+- <a href="https://unit8co.github.io/darts/quickstart/00-quickstart.html">Darts Library Install</a>
 ## <a name="basic_knowledge"></a>Basic knowledge
 ### Darts
 Darts is a Python library for user-friendly forecasting and anomaly detection on time series. It contains a variety of models, from classics such as ARIMA to deep neural networks. The forecasting models can all be used in the same way, using fit() and predict() functions, similar to scikit-learn. The library also makes it easy to backtest models, combine the predictions of several models, and take external data into account.

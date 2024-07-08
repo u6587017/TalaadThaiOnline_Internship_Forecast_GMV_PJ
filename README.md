@@ -3,6 +3,17 @@
 ## About Project
 The project involves creating a Machine Learning model to predict GMV (Gross Merchandise Value). It will be carried out in two phases:
 
+## Table of contents
+- [Phase 1](#phase_1)
+  - [Import Library](#library)
+  - [Read CSV File](#read_csv)
+  - [Data Cleaning](#data_cleaning)
+  - [Feature Engineering](#feature_engineering)
+  - [Scaling](#scaler)
+  - [HyperParameter Tuning](#hyper)
+  - [Model Evaluation](#evaluation)
+  - [Result](#result)
+  - [Model selection and forecasting](#train)
 ### Files
 #### PJ_forecast_GMV_phase1.ipynb: Development of a Machine Learning Model using Darts Library<br />[Clickhere to Phase 1](#phase_1)
 #### PJ_forecast_GMV_phase2.ipynb: Development of a Deep Learning Model using TensorFlow and Keras<br />[Clickhere to Phase 2](#phase_2)
@@ -45,7 +56,7 @@ Pandas, Numpy, Matplotlib
 #### Phase 2 : TensorFlow 2.15.0
 
 ## <a name="phase_1"></a>Phase 1
-### Import Library
+### <a name="library"></a>Import Library
 ```
 import pandas as pd
 from darts import TimeSeries
@@ -55,7 +66,7 @@ from darts.metrics.metrics import mape
 from darts.metrics.metrics import mae
 from darts.metrics.metrics import rmse
 ```
-#### Read CSV File using Pandas
+#### <a name="read_csv"></a>Read CSV File using Pandas
 ```
 df =pd.read_csv('./forecast_gmv_06_12_2024.csv')
 df.head()
@@ -84,7 +95,7 @@ df = pd.concat([df, new_rows], ignore_index=True)
 df['gmv'].plot()
 ```
 ![ts](https://github.com/u6587017/TalaadThaiOnline_Internship_Forecast_GMV_PJ/assets/108443663/5f357356-30a4-4b12-895a-c1bf96d74ff4)
-### Data Cleaning
+### <a name="data_cleaning"></a>Data Cleaning
 #### Convert Data Types
 ```
 #Covert data types
@@ -144,7 +155,7 @@ df.eq(0).sum()
 # แทนที่ null ด้วยค่าเฉลี่ย
 df.fillna(df.mean(), inplace=True)
 ```
-### Feature Engineering
+### <a name="feature_engineering"></a>Feature Engineering
 Create new features or transform existing ones to improve the performance of machine learning models
 From below code, we create new features from date such as Marketing Campaign
 ```
@@ -188,7 +199,7 @@ You can also fillna with Timeseries data type in Darts
 from darts.utils.missing_values import fill_missing_values
 future_cov = fill_missing_values(future_cov, fill='auto')
 ```
-## Scaler (Optional)
+## <a name="scaler"></a>Scaler (Optional)
 Scaler in Darts is MinMaxScaler. MinMaxScaler is a feature scaling technique in data preprocessing that transforms features by scaling each feature to a given range, typically between 0 and 1.
 MinMaxScaler is used to normalize the features in a dataset, which ensures that each feature contributes equally to the result and prevents features with larger ranges from dominating the model.
 ```
@@ -249,7 +260,7 @@ print('p-value: %f' % result[1])
 
 ```
 
-### Evaluation
+### <a name="evaluation"></a>Evaluation
 We could evaluate from 3 metrics
 - MAE calculates the average absolute difference between the actual values and the predicted values. It gives an idea of how much the predictions deviate from the actual values on average. Interpretation: A lower MAE value indicates better model performance. It is easy to understand and interpret.
 <br />![mean-absolute-error-equation](https://github.com/u6587017/TalaadThaiOnline_Internship_Forecast_GMV_PJ/assets/108443663/70a2a27c-40a2-4a47-a0a4-4fc1a789af89)
@@ -351,9 +362,9 @@ for model, ax in zip(models, axes):
 plt.tight_layout()
 plt.show()
 ```
-### Result
+### <a name="result"></a>Result
 ![18_Jun_Historical_Forecast](https://github.com/u6587017/TalaadThaiOnline_Internship_Forecast_GMV_PJ/assets/108443663/120a0ce0-c789-4d7a-94cb-82c07aebfcea)
-### Hyperparameter Tuning
+### <a name="hyper"></a>Hyperparameter Tuning
 Hyperparameter Tuning is the process of finding the most effective set of hyperparameters for a machine learning model. Hyperparameters are the parameters that are not learned from the data but set prior to the training process. They control the overall behavior of the training process and the structure of the model. We will use GridSearch. Darts Library also provide GridSearch, so we could find the best params like lags.
 ```
 # from darts.models.forecasting.lgbm import LightGBMModel
@@ -445,7 +456,7 @@ best_param = RegressionModel.gridsearch(
     )
 
 ```
-### Train and use model to Forecast
+### <a name="train"></a>Train and use model to Forecast
 - To train model, we will select the best model in each day to fit with the time-series data
 - To forecast, we will use model.predict(length of days we're going to forecast, future_covariates)
 - I also commented the code in case we use gmv_diff which is more non-stationary data to forecast

@@ -1,15 +1,9 @@
 # TalaadThaiOnline_Internship_Forecast_GMV_PJ
-## Table of Contents
-<details>
-<summary>Table of contents</summary>
-<br>
-[Skip to Phase 1](#phase_1)
-</details>
-<br>
+
 ## About Project
 The project involves creating a Machine Learning model to predict GMV (Gross Merchandise Value). It will be carried out in two phases:
 ### Files
-#### PJ_forecast_GMV_phase1.ipynb: Development of a Machine Learning Model using Darts Library
+#### PJ_forecast_GMV_phase1.ipynb: Development of a Machine Learning Model using Darts Library [Skip to Phase 1](#phase_1)
 #### PJ_forecast_GMV_phase2.ipynb: Development of a Deep Learning Model using TensorFlow and Keras [Clickhere](#deep learning)
 #### forecast_gmv_06_12_2024.csv: CSV file includes features for GMV forecasting
 - date (Day)

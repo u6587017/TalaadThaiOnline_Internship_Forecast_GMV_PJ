@@ -502,7 +502,7 @@ def df_to_X_y (df, window_size=5):
   return np.array(X), np.array(y)
 ```
 #### Function Purpose
-เป็นฟังก์ชันที่เราจะใส่ DataFrame และแปลงออกมาเป็น Numpy โดยใช้ความเข้าใจเรื่อง Lag Features ซึ่งผลลัพธ์จะได้เป็น eg. ((690, 5, 1), (690,)) โดย 690 คือจำนวน Row ของข้อมูลทั้งหมด, 5 คือจำนวน lags และ 1 คือ feature ที่ใช้ในที่นี้คือ gmv
+เป็นฟังก์ชันที่เราจะใส่ DataFrame และแปลงออกมาเป็น Numpy โดยใช้ความเข้าใจเรื่อง Lag Features ซึ่งผลลัพธ์จะได้เป็น eg. ((690, 5, 1), (690,)) โดย 690 คือจำนวน Row ของข้อมูลทั้งหมด, 5 คือจำนวน lags และ 1 คือ feature ที่ใช้ในที่นี้คือ gmv<br />
 Input: A pandas DataFrame df and a window_size (default is 5).
 Output: Two numpy arrays, X and y, where X contains sequences of data points and y contains the corresponding labels (the next data point following each sequence).
 

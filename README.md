@@ -510,13 +510,13 @@ def df_to_X_y (df, window_size=5):
 Input: A pandas DataFrame df and a window_size (default is 5).
 Output: Two numpy arrays, X and y, where X contains sequences of data points and y contains the corresponding labels (the next data point following each sequence).
 
-#### Check numpy array shape
+#### Use convert function Check numpy array shape
 ```
 WINDOW_SIZE = 5
 X, y = df_to_X_y(df['gmv'], WINDOW_SIZE)
 X.shape, y.shape
 ```
-#### Split Training/Testing data set as 80:20
+#### Split Training/Testing data set as 80:20 for 1 feature
 ```
 X_train, y_train = X[:432], y[:432]
 X_test, y_test = X[432:], y[432:]
@@ -542,3 +542,28 @@ def df_to_X_y2 (df, window_size=7):
 [ [ [g1, q1],[g2, q1],[g3, q1],[g4, q1],[g5, q1] ] ] ==> [g6] ; เมื่อ g, q คือแต่ละ feature<br />
 Input: A pandas DataFrame df and a window_size (default is 7).<br />
 Output: Two numpy arrays, X and y, where X contains sequences of data points and y contains the corresponding labels (the next data point following each sequence).
+#### Use convert function Check numpy array shape
+```
+X2, y2 = df_to_X_y2(df)
+X2.shape, y2.shape
+```
+``` Split Training/Testing data set as 80:20 for multiple features
+X2_train, y2_train = X2[:int(len(df)*0.8)], y2[:int(len(df)*0.8)]
+X2_test, y2_test = X2[int(len(df)*0.8):], y2[int(len(df)*0.8):]
+X2_train.shape, y2_train.shape, X2_test.shape, y2_test.shape
+```
+#### Standardization
+Standardization คือกระบวนการในขั้นตอนการเตรียมข้อมูลที่ใช้ปรับขนาดคุณลักษณะ (features) ให้มีค่าเฉลี่ยเป็น 0 และส่วนเบี่ยงเบนมาตรฐานเป็น 1 การทำเช่นนี้เพื่อให้ feature แต่ละตัวมีส่วนร่วมใน model อย่างเท่าเทียมกันและเพื่อปรับปรุงประสิทธิภาพและความเสถียรในการฝึกของอัลกอริทึมการเรียนรู้ของเครื่อง<br />
+Standardization is a process in data preprocessing where the features are rescaled so that they have a mean of 0 and a standard deviation of 1. This is done to ensure that each feature contributes equally to the model and to improve the performance and training stability of machine learning algorithms.
+```
+gmv_training_mean = np.mean(X2_train[:, :, 0])
+gmv_training_std = np.std(X2_train[:, :, 0])
+
+def preprocess(X):
+  X[:, :, 0] = (X[:, :, 0] - gmv_training_mean) / gmv_training_std
+  return X
+
+def preprocess_output(y):
+  y = (y - gmv_training_mean) / gmv_training_std
+  return y
+```

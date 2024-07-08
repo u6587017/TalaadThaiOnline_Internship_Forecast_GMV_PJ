@@ -568,3 +568,27 @@ def preprocess_output(y):
   y = (y - gmv_training_mean) / gmv_training_std
   return y
 ```
+#### Compiles a Sequential model using Keras for time series forecasting
+```
+model4 = Sequential()
+model4.add(InputLayer(input_shape=(7, 13)))
+model4.add(LSTM(50, return_sequences = True,))
+model4.add(LSTM(50, ))
+model4.add(Dense(25, 'relu'))
+model4.add(Dense(1, 'linear'))
+
+model4.summary()
+model4.compile(loss='mse', optimizer=Adam(learning_rate=0.0001), metrics=[RootMeanSquaredError()])
+```
+#### Training model
+ฝึกโมเดล model4 โดยใช้เมธอด fit กับข้อมูลการฝึก X2_train และ y2_train เป็นเวลา 20 รอบการฝึก (epochs) เมธอด fit จะคืนค่า history ซึ่งประกอบด้วยรายละเอียดเกี่ยวกับกระบวนการฝึก<br />
+<br />
+Trains the model4 using the fit method with the training data X2_train and y2_train for 20 epochs. The fit method returns a history object which contains details about the training process.
+
+model4.fit: Trains the model using the provided training data.
+X2_train: The input features for training.
+y2_train: The target values for training.
+epochs=20: The model will iterate over the entire training dataset 20 times.
+```
+history = model4.fit(X2_train, y2_train, epochs=20)
+```

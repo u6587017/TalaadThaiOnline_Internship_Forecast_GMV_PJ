@@ -4,7 +4,7 @@
 The project involves creating a Machine Learning model to predict GMV (Gross Merchandise Value). It will be carried out in two phases:
 
 
-## <details><summary>Table of Contents</summary>
+<details><summary>Table of Contents</summary>
 [Phase 1](#phase_1)
 [Phase 2](#phase_2)
 </details>

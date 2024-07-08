@@ -592,3 +592,37 @@ Trains the model4 using the fit method with the training data X2_train and y2_tr
 ```
 history = model4.fit(X2_train, y2_train, epochs=20)
 ```
+#### Function to convert standardized GMV back to actual GMV
+```
+def post_process_gmv(arr):
+  arr = (arr*gmv_training_std) + gmv_training_mean
+  return arr
+```
+
+from sklearn.metrics import mean_squared_error, mean_absolute_error, mean_absolute_percentage_error
+from math import sqrt
+df2 = df.copy()
+
+### Evaluation
+#### Function to predict the validate data
+```
+def plot_predictions2(model, X, y, l):
+    predictions = model.predict(X)
+    gmv_pred = post_process_gmv(predictions[:, 0])
+    gmv_actual = post_process_gmv(y)
+    df = pd.DataFrame(data={'Predictions':gmv_pred, 'Actuals':gmv_actual}, index= df2[int(len(df2)*0.8) + 7:].index)
+    rmse = sqrt(mean_squared_error(df['Actuals'], df['Predictions']))
+    mae = mean_absolute_error(df['Actuals'], df['Predictions'])
+    mape = mean_absolute_percentage_error(df['Actuals'], df['Predictions'])
+    plt.plot(df2['gmv'], label='Original GMV')
+    plt.plot(df['Predictions'], label='Predictions')
+    plt.plot(df['Actuals'], label='Actuals')
+    plt.title(label=l+f' mae: {mae} - mape: {mape} - rmse: {rmse}')
+    plt.legend()
+    return df.tail(7)
+```
+#### Call plot_prediction function
+Will show date, predicted GMV, actual GMV and Time-series graph 
+```
+plot_predictions2(model4, X2_test, y2_test, 'LSTM')
+```

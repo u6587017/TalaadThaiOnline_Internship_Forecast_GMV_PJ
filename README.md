@@ -1,7 +1,7 @@
 # TalaadThaiOnline_Internship_Forecast_GMV_PJ
 
 ## About Project
-The project involves creating a Machine Learning model to predict GMV (Gross Merchandise Value). It will be carried out in two phases:
+The project involves creating a Machine Learning model to predict GMV (Gross Merchandise Value). It will be carried out in two phases
 
 ## Table of contents
 - [Files](#files)

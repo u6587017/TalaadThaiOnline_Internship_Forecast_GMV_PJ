@@ -469,7 +469,7 @@ best_param = RegressionModel.gridsearch(
 
 ```
 ### <a name="train"></a>Train and use model to Forecast
-- To train model, we will select the best model in each day to fit with the time-series data
+- To train model, we will select the best model in each day base on the lowest MAPE to fit with the time-series data
 - To forecast, we will use model.predict(length of days we're going to forecast, future_covariates)
 - I also commented the code in case we use gmv_diff which is more non-stationary data to forecast
 ```

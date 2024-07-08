@@ -585,10 +585,10 @@ model4.compile(loss='mse', optimizer=Adam(learning_rate=0.0001), metrics=[RootMe
 <br />
 Trains the model4 using the fit method with the training data X2_train and y2_train for 20 epochs. The fit method returns a history object which contains details about the training process.
 
-model4.fit: Trains the model using the provided training data.
-X2_train: The input features for training.
-y2_train: The target values for training.
-epochs=20: The model will iterate over the entire training dataset 20 times.
+- model4.fit: Trains the model using the provided training data.
+- X2_train: The input features for training.
+- y2_train: The target values for training.
+- epochs=20: The model will iterate over the entire training dataset 20 times.
 ```
 history = model4.fit(X2_train, y2_train, epochs=20)
 ```

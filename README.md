@@ -65,6 +65,7 @@ If you train a model using past_covariates, you’ll have to provide these past_
 ### Historical Forecast
 In the context of time series forecasting with the Darts library, a historical forecast typically refers to generating forecasts for multiple points in time, often using a rolling or expanding window approach. This method is used to simulate how a model would perform in real-time forecasting by making predictions at several time steps in the past and comparing them with the actual values
 ![historical_forecast](https://github.com/u6587017/TalaadThaiOnline_Internship_Forecast_GMV_PJ/assets/108443663/d5a89563-f728-4f82-9d9f-3a0ef9153c39)
+### <a href="https://unit8co.github.io/darts/userguide.html">Read More about Darts</a>
 ### Library
 Pandas, Numpy, Matplotlib 
 #### Phase 1 : Darts 0.13.0, Scikit-learn 3.8.1 

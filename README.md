@@ -3,8 +3,8 @@
 ## About Project
 The project involves creating a Machine Learning model to predict GMV (Gross Merchandise Value). It will be carried out in two phases:
 ### Files
-#### PJ_forecast_GMV_phase1.ipynb: Development of a Machine Learning Model using Darts Library [Skip to Phase 1](#phase_1)
-#### PJ_forecast_GMV_phase2.ipynb: Development of a Deep Learning Model using TensorFlow and Keras [Clickhere](#deep learning)
+#### PJ_forecast_GMV_phase1.ipynb: Development of a Machine Learning Model using Darts Library [CLickhere to Phase 1](#phase_1)
+#### PJ_forecast_GMV_phase2.ipynb: Development of a Deep Learning Model using TensorFlow and Keras [Clickhere to Phase2](#phase_2)
 #### forecast_gmv_06_12_2024.csv: CSV file includes features for GMV forecasting
 - date (Day)
 - gmv (per day)
@@ -471,7 +471,7 @@ forecast_diff = scaler_gmv.inverse_transform(forecast_diff)
 # forecast_gmv
 forecast_diff.pd_dataframe()
 ```
-## Phase 2
+## <a name="phase_2"></a>Phase 2
 In this phase, I'm going to implement the Deep Learning model.
 ### Import Library
 ```

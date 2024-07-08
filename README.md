@@ -488,6 +488,7 @@ from sklearn.metrics import mean_squared_error
 Then we will use the code since read CSV file - Feature Engineering the same as in Phase 1 <br/>
 ### Deep Learning
 After the DataFrame is ready we will create a function to convert DataFrame to Numpy Array for Deep Learning
+#### Function to convert DataFrame to Numpy array (1 feature)
 ```
 def df_to_X_y (df, window_size=5):
   df_as_np = df.to_numpy()
@@ -500,6 +501,11 @@ def df_to_X_y (df, window_size=5):
     y.append(label)
   return np.array(X), np.array(y)
 ```
+#### Function Purpose
+เป็นฟังก์ชันที่เราจะใส่ DataFrame และแปลงออกมาเป็น Numpy โดยใช้ความเข้าใจเรื่อง Lag Features ซึ่งผลลัพธ์จะได้เป็น eg. ((690, 5, 1), (690,)) โดย 690 คือจำนวน Row ของข้อมูลทั้งหมด, 5 คือจำนวน lags และ 1 คือ feature ที่ใช้ในที่นี้คือ gmv
+Input: A pandas DataFrame df and a window_size (default is 5).
+Output: Two numpy arrays, X and y, where X contains sequences of data points and y contains the corresponding labels (the next data point following each sequence).
+
 #### Check numpy array shape
 ```
 WINDOW_SIZE = 5
@@ -511,4 +517,22 @@ X.shape, y.shape
 X_train, y_train = X[:432], y[:432]
 X_test, y_test = X[432:], y[432:]
 X_train.shape, y_train.shape, X_test.shape, y_test.shape
+```
+#### Function to convert DataFrame to Numpy array (multiple features)
+```
+# [ [ [g1],[g2],[g3],[g4],[g5] ] ] [g6]
+# [ [ [g2],[g3],[g4],[g5],[g6] ] ] [g7]
+
+# [ [ [g1, q1, g3],[g2, q1],[g3, q1],[g4, q1],[g5, q1] ] ] ==> [g6]
+
+def df_to_X_y2 (df, window_size=7):
+  df_as_np = df.to_numpy()
+  X = []
+  y = []
+  for i in range(len(df_as_np)-window_size):
+    row = [r for r in df_as_np[i:i+window_size]]
+    X.append(row)
+    label = df_as_np[i+window_size][0]
+    y.append(label)
+  return np.array(X), np.array(y)
 ```

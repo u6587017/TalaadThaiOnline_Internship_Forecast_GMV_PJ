@@ -6,11 +6,10 @@ The project involves creating a Machine Learning model to predict GMV (Gross Mer
 
 <details><summary>Table of Contents</summary>
 [Phase 1](#phase_1)<br />
-[Phase 2](#phase_2)
 </details>
 
 ### Files
-#### PJ_forecast_GMV_phase1.ipynb: Development of a Machine Learning Model using Darts Library [Clickhere to Phase 1](#phase_1)
+#### PJ_forecast_GMV_phase1.ipynb: Development of a Machine Learning Model using Darts Library 
 #### PJ_forecast_GMV_phase2.ipynb: Development of a Deep Learning Model using TensorFlow and Keras [Clickhere to Phase 2](#phase_2)
 #### forecast_gmv_06_12_2024.csv: CSV file includes features for GMV forecasting
 - date (Day)

@@ -503,6 +503,7 @@ forecast_diff = scaler_gmv.inverse_transform(forecast_diff)
 # forecast_gmv
 forecast_diff.pd_dataframe()
 ```
+![forecast](https://github.com/u6587017/TalaadThaiOnline_Internship_Forecast_GMV_PJ/assets/108443663/9c0c56a4-79e4-4bd6-a011-c51207e3e1d5)
 ## <a name="phase_2"></a>Phase 2
 In this phase, I'm going to implement the Deep Learning model using Tensorflow and Keras
 ### <a name="lib2"></a>Import Library

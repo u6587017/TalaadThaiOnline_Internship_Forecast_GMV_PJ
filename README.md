@@ -2,6 +2,13 @@
 
 ## About Project
 The project involves creating a Machine Learning model to predict GMV (Gross Merchandise Value). It will be carried out in two phases:
+
+
+## <details><summary>Table of Contents</summary>
+[Phase 1](#phase_1)
+[Phase 2](#phase_2)
+</details>
+
 ### Files
 #### PJ_forecast_GMV_phase1.ipynb: Development of a Machine Learning Model using Darts Library [Clickhere to Phase 1](#phase_1)
 #### PJ_forecast_GMV_phase2.ipynb: Development of a Deep Learning Model using TensorFlow and Keras [Clickhere to Phase 2](#phase_2)

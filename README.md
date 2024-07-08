@@ -554,6 +554,7 @@ X2_train.shape, y2_train.shape, X2_test.shape, y2_test.shape
 ```
 #### Standardization
 Standardization คือกระบวนการในขั้นตอนการเตรียมข้อมูลที่ใช้ปรับขนาดคุณลักษณะ (features) ให้มีค่าเฉลี่ยเป็น 0 และส่วนเบี่ยงเบนมาตรฐานเป็น 1 การทำเช่นนี้เพื่อให้ feature แต่ละตัวมีส่วนร่วมใน model อย่างเท่าเทียมกันและเพื่อปรับปรุงประสิทธิภาพและความเสถียรในการฝึกของอัลกอริทึมการเรียนรู้ของเครื่อง<br />
+<br />
 Standardization is a process in data preprocessing where the features are rescaled so that they have a mean of 0 and a standard deviation of 1. This is done to ensure that each feature contributes equally to the model and to improve the performance and training stability of machine learning algorithms.
 ```
 gmv_training_mean = np.mean(X2_train[:, :, 0])

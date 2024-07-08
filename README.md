@@ -6,7 +6,10 @@ The project involves creating a Machine Learning model to predict GMV (Gross Mer
 ### Files
 #### PJ_forecast_GMV_phase1.ipynb: Development of a Machine Learning Model using Darts Library<br />[Clickhere to Phase 1](#phase_1)
 #### PJ_forecast_GMV_phase2.ipynb: Development of a Deep Learning Model using TensorFlow and Keras<br />[Clickhere to Phase 2](#phase_2)
-#### Note! In phase 2, I use the same data cleaning process and feature engineering process the same as in Phase 1, so look at Phase 1 first
+### Note!!!
+- This project need some basic knowledge of Machine Learning and also Time series lag feature.
+- To understand lag feature, I already provide you in [Basic knowledge](#basic_knowledge) section 
+- In phase 2, I use the same data cleaning process and feature engineering process the same as in Phase 1, so look at Phase 1 first
 #### forecast_gmv_06_12_2024.csv: CSV file includes features for GMV forecasting
 - date (Day)
 - gmv (per day)
@@ -18,7 +21,7 @@ The project involves creating a Machine Learning model to predict GMV (Gross Mer
 ## Prerequisites
 - Python 3.9-3.12
 - Understanding in basic machine learning, lags featuring
-## Basic knowledge
+## <a name="basic_knowledge"></a>Basic knowledge
 ### Darts
 Darts is a Python library for user-friendly forecasting and anomaly detection on time series. It contains a variety of models, from classics such as ARIMA to deep neural networks. The forecasting models can all be used in the same way, using fit() and predict() functions, similar to scikit-learn. The library also makes it easy to backtest models, combine the predictions of several models, and take external data into account.
 ![darts_unit8](https://github.com/u6587017/TalaadThaiOnline_Internship_Forecast_GMV_PJ/assets/108443663/9970cfd5-23bd-4f1d-8691-aead61ef8ebb)

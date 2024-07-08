@@ -9,7 +9,7 @@ The project involves creating a Machine Learning model to predict GMV (Gross Mer
 ### Note!!!
 - This project need some basic knowledge of Machine Learning and also Time series lag feature.
 - To understand lag feature, I already provide you in [Basic knowledge](#basic_knowledge) section 
-- In phase 2, I use the same data cleaning process and feature engineering process the same as in Phase 1, so look at Phase 1 first
+- In phase 2, I use the same data cleaning process and feature engineering process the same as in Phase 1, so take a look in Phase 1 first
 #### forecast_gmv_06_12_2024.csv: CSV file includes features for GMV forecasting
 - date (Day)
 - gmv (per day)

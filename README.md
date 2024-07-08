@@ -4,6 +4,9 @@
 The project involves creating a Machine Learning model to predict GMV (Gross Merchandise Value). It will be carried out in two phases:
 
 ## Table of contents
+- [Files](#files)
+- [Features inside CSV File](#features)
+- [Basic knowledge](#basic_knowledge)
 - [Phase 1](#phase_1)
   - [Import Library](#library)
   - [Read CSV File](#read_csv)
@@ -23,14 +26,14 @@ The project involves creating a Machine Learning model to predict GMV (Gross Mer
   - [Model Training](#train_2)
   - [Evaluation](#eval_2)
   - [Result](#result_2)
-### Files
+### <a name="files"></a>Files
 #### PJ_forecast_GMV_phase1.ipynb: Development of a Machine Learning Model using Darts Library<br />[Clickhere to Phase 1](#phase_1)
 #### PJ_forecast_GMV_phase2.ipynb: Development of a Deep Learning Model using TensorFlow and Keras<br />[Clickhere to Phase 2](#phase_2)
 ### Note!!!
 - This project need some basic knowledge of Machine Learning and also Time series lag feature.
 - To understand lag feature, I already provide you in [Basic knowledge](#basic_knowledge) section 
 - In phase 2, I use the same data cleaning process and feature engineering process the same as in Phase 1, so take a look in Phase 1 first
-#### forecast_gmv_06_12_2024.csv: CSV file includes features for GMV forecasting
+#### <a name="features"></a>forecast_gmv_06_12_2024.csv: CSV file includes features for GMV forecasting
 - date (Day)
 - gmv (per day)
 - quantity (per day)

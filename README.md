@@ -5,7 +5,7 @@ The project involves creating a Machine Learning model to predict GMV (Gross Mer
 
 
 <details><summary>Table of Contents</summary>
-[Phase 1](#phase_1)
+[Phase 1](#phase_1)<br />
 [Phase 2](#phase_2)
 </details>
 

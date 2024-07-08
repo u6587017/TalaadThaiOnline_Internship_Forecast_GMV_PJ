@@ -626,3 +626,5 @@ Will show date, predicted GMV, actual GMV and Time-series graph
 ```
 plot_predictions2(model4, X2_test, y2_test, 'LSTM')
 ```
+![prediction](https://github.com/u6587017/TalaadThaiOnline_Internship_Forecast_GMV_PJ/assets/108443663/371ebf92-4ee9-4717-9eaa-1f05cf76e6a0)
+![latest](https://github.com/u6587017/TalaadThaiOnline_Internship_Forecast_GMV_PJ/assets/108443663/81cd42b0-be71-42f3-a22d-46ac1bd58830)

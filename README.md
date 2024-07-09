@@ -387,11 +387,12 @@ for model, ax in zip(models, axes):
 plt.tight_layout()
 plt.show()
 ```
+### <a name="result"></a>Result
+ผลลัพธ์จาก Historical_Forecast โดยเป็นการแบ่ง Train/Validation 80:20
+![18_Jun_Historical_Forecast](https://github.com/u6587017/TalaadThaiOnline_Internship_Forecast_GMV_PJ/assets/108443663/120a0ce0-c789-4d7a-94cb-82c07aebfcea)<br />
 ## <a name="backtest"></a>Backtesting
 ทำ Backtesting เพื่อลองให้โมเดลลองทำนายข้อมูลเป็นช่วง ๆ ทั้งหมด ทำให้เราเห็นประสิทธิภาพจริง ๆ ว่าโมเดลไหนควรนำมาใช้
 ![backtest_](https://github.com/u6587017/TalaadThaiOnline_Internship_Forecast_GMV_PJ/assets/108443663/0fc70118-71cd-4e9f-bdd9-151190526e7a)<br />
-### <a name="result"></a>Result
-![18_Jun_Historical_Forecast](https://github.com/u6587017/TalaadThaiOnline_Internship_Forecast_GMV_PJ/assets/108443663/120a0ce0-c789-4d7a-94cb-82c07aebfcea)
 ### <a name="hyper"></a>Hyperparameter Tuning
 Hyperparameter Tuning เป็นกระบวนการหาชุด Hyperparameter ที่มีประสิทธิภาพที่สุดสำหรับโมเดล Hyperparameter เป็นพารามิเตอร์ที่ไม่ได้เรียนรู้จากข้อมูลแต่ถูกตั้งค่าก่อน Training มันควบคุมพฤติกรรมโดยรวมของกระบวนการ Training และโครงสร้างของโมเดล เราจะใช้ GridSearch ซึ่งไลบรารี Darts ก็มีฟังก์ชัน GridSearch ดังนั้นเราสามารถหาค่าพารามิเตอร์ที่ดีที่สุดได้ เช่น lags
 ```

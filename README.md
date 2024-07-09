@@ -31,7 +31,7 @@ Project เกี่ยวข้องกับการสร้างโมเ
 #### PJ_forecast_GMV_phase2.ipynb: Development of a Deep Learning Model using TensorFlow and Keras<br />[Clickhere to Phase 2](#phase_2)
 ### Note!!!
 - Project นี้ต้องการความรู้พื้นฐานเกี่ยวกับ Machine Learning และ Time Series Lag Feature
-- เพื่อให้เข้าใจเกี่ยวกับคุณลักษณะของ Lag ผมได้เตรียมข้อมูลไว้ให้แล้วในส่วน [Basic knowledge](#basic_knowledge)
+- เพื่อให้เข้าใจเกี่ยวกับคุณลักษณะของ Lag สามารถศึกษาเบื้องต้นได้ในส่วน [Basic knowledge](#basic_knowledge)
 - ใน Phase ที่ 2 ผมจะใช้กระบวนการทำความสะอาดข้อมูล (Data Cleaning) และการสร้างคุณลักษณะ (Feature Engineering) เช่นเดียวกับใน phase ที่ 1 ดังนั้นควรดู phase ที่ 1 ก่อน
 - หากมีปัญหาเกี่ยวกับ Version ในเฟสที่ 2 สามารถเปลี่ยนไปใช้ Google Colab ซึ่งมี Library ที่จำเป็นพร้อมแล้วได้
 #### <a name="features"></a>forecast_gmv_06_12_2024.csv: CSV file includes features for GMV forecasting
@@ -53,7 +53,7 @@ Darts เป็นไลบรารีของ Python ที่ใช้งา
 ![darts_unit8](https://github.com/u6587017/TalaadThaiOnline_Internship_Forecast_GMV_PJ/assets/108443663/9970cfd5-23bd-4f1d-8691-aead61ef8ebb)
 ![darts](https://github.com/u6587017/TalaadThaiOnline_Internship_Forecast_GMV_PJ/assets/108443663/d57bbe15-013c-4433-9807-61fe1b98c6a5)
 ### Lags feature
-Lag features are a fundamental concept in time series analysis and forecasting. They involve using previous time points in the series as input features for predicting future values. Lag features are created by shifting the time series data backward by a certain number of periods (lags). Each lag represents the value of the time series at a previous time step.
+Lags feature เป็นแนวคิดพื้นฐานในการวิเคราะห์และพยากรณ์ Time-series data โดยการใช้ค่าของ Time-series data ในช่วงเวลาก่อนหน้าเป็น Feature ในการทำนายค่าของ Time-series ในอนาคต Lag feature ถูกสร้างขึ้นโดยการเลื่อนข้อมูลซีรีส์เวลาย้อนหลังตามจำนวนช่วงเวลาที่กำหนด (lags) แต่ละ lag แทนค่าของซีรีส์เวลาในขั้นเวลาก่อนหน้า
 ![Screenshot 2024-07-05 131315](https://github.com/u6587017/TalaadThaiOnline_Internship_Forecast_GMV_PJ/assets/108443663/24aea135-89bb-40fc-9639-aa919a3edf45)
 ### Covariates in Darts
 In Darts, covariates refer to external data that can be used as inputs to models to help improve forecasts. In the context of forecasting models, the target is the series to be forecasted/predicted, and the covariates themselves are not predicted.

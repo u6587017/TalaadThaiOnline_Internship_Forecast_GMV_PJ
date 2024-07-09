@@ -49,7 +49,7 @@ The project involves creating a Machine Learning model to predict GMV (Gross Mer
 - <a href="https://keras.io/getting_started/">Keras Install</a>
 ## <a name="basic_knowledge"></a>Basic knowledge
 ### Darts
-Darts is a Python library for user-friendly forecasting and anomaly detection on time series. It contains a variety of models, from classics such as ARIMA to deep neural networks. The forecasting models can all be used in the same way, using fit() and predict() functions, similar to scikit-learn. The library also makes it easy to backtest models, combine the predictions of several models, and take external data into account.
+Darts เป็นไลบรารีของ Python ที่ใช้งานง่ายสำหรับการพยากรณ์และการตรวจจับความผิดปกติใน Time-series data มีโมเดลหลากหลาย ตั้งแต่โมเดลคลาสสิกอย่าง ARIMA ไปจนถึงเครือข่ายประสาทลึก (Deep Neural Networks) โมเดลการพยากรณ์ทั้งหมดสามารถใช้งานได้ในลักษณะเดียวกัน โดยใช้ฟังก์ชัน fit() และ predict() คล้ายกับ scikit-learn ไลบรารียังทำให้การทดสอบย้อนกลับของโมเดล (Backtesting) ง่ายขึ้น รวมทั้งการรวมการทำนายของโมเดลหลายตัว และการคำนึงถึงการใช้ข้อมูลภายนอก
 ![darts_unit8](https://github.com/u6587017/TalaadThaiOnline_Internship_Forecast_GMV_PJ/assets/108443663/9970cfd5-23bd-4f1d-8691-aead61ef8ebb)
 ![darts](https://github.com/u6587017/TalaadThaiOnline_Internship_Forecast_GMV_PJ/assets/108443663/d57bbe15-013c-4433-9807-61fe1b98c6a5)
 ### Lags feature

@@ -63,7 +63,8 @@ Lags feature เป็นแนวคิดพื้นฐานในการ�
 หากฝึกโมเดลโดยใช้ past_covariates คุณจะต้องใส่ past_covariates ในเวลาทำนายกับฟังก์ชัน predict() ด้วย รวมทั้ง future_covariates เช่นกัน แต่มีข้อแม้ว่าต้องให้ future_covariates ขยายไปถึงอนาคตในเวลาทำนาย (จนถึงขอบเขตการพยากรณ์ n) ดังที่เห็นในกราฟด้านล่าง past_covariates จะต้องรวมช่วงเวลาเดียวกันอย่างน้อยกับ target และ future_covariates ต้องรวมช่วงเวลาเดียวกันอย่างน้อยบวกกับช่วงเวลา n ของขอบเขตการพยากรณ์
 
 ### Historical Forecast
-In the context of time series forecasting with the Darts library, a historical forecast typically refers to generating forecasts for multiple points in time, often using a rolling or expanding window approach. This method is used to simulate how a model would perform in real-time forecasting by making predictions at several time steps in the past and comparing them with the actual values
+Historical Forecast หมายถึงการสร้างการพยากรณ์สำหรับหลายจุดในเวลา โดยมักใช้วิธีการ rolling หรือ expanding window วิธีนี้ใช้เพื่อจำลองว่าโมเดลจะทำงานอย่างไรในสถานการณ์การพยากรณ์จริงโดยการทำนายในหลายขั้นเวลาในอดีตและเปรียบเทียบกับค่าจริง
+ซึ่งช่วยอำนวยความสะดวกทำให้ไม่จำเป็นต้อง Train/Test Split เพราะสามารถกำหนดภายใน Parameter ได้เลย
 ![historical_forecast](https://github.com/u6587017/TalaadThaiOnline_Internship_Forecast_GMV_PJ/assets/108443663/d5a89563-f728-4f82-9d9f-3a0ef9153c39)
 ### <a href="https://unit8co.github.io/darts/userguide.html">Read More about Darts</a>
 ### Library
@@ -88,7 +89,7 @@ df =pd.read_csv('./forecast_gmv_06_12_2024.csv')
 df.head()
 ```
 #### Update GMV (Every day)
-- Add new date into 'date' column and new GMV into 'gmv' column
+- เพิ่มข้อมูล date ลง 'date' column and GMV ลง 'gmv' column
 - We have to update GMV on 2024-06-12 since it was the day we query, so we want to ensure that the GMV reflects the complete data for that day.
 ```
 # Update gmv each day after query

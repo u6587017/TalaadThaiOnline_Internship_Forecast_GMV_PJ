@@ -30,10 +30,10 @@ Project เกี่ยวข้องกับการสร้างโมเ
 #### PJ_forecast_GMV_phase1.ipynb: Development of a Machine Learning Model using Darts Library<br />[Clickhere to Phase 1](#phase_1)
 #### PJ_forecast_GMV_phase2.ipynb: Development of a Deep Learning Model using TensorFlow and Keras<br />[Clickhere to Phase 2](#phase_2)
 ### Note!!!
-- This project need some basic knowledge of Machine Learning and also Time series lag feature.
-- To understand lag feature, I already provide you in [Basic knowledge](#basic_knowledge) section 
-- In phase 2, I use the same data cleaning process and feature engineering process the same as in Phase 1, so take a look in Phase 1 first
-- If you have problem with version in Phase 2, you could switch to Google Colab
+- Project นี้ต้องการความรู้พื้นฐานเกี่ยวกับ Machine Learning และ Time Series Lag Feature
+- เพื่อให้เข้าใจเกี่ยวกับคุณลักษณะของ Lag ผมได้เตรียมข้อมูลไว้ให้แล้วในส่วน [Basic knowledge](#basic_knowledge)
+- ใน Phase ที่ 2 ผมจะใช้กระบวนการทำความสะอาดข้อมูล (Data Cleaning) และการสร้างคุณลักษณะ (Feature Engineering) เช่นเดียวกับใน phase ที่ 1 ดังนั้นควรดู phase ที่ 1 ก่อน
+- หากมีปัญหาเกี่ยวกับ Version ในเฟสที่ 2 สามารถเปลี่ยนไปใช้ Google Colab ซึ่งมี Library ที่จำเป็นพร้อมแล้วได้
 #### <a name="features"></a>forecast_gmv_06_12_2024.csv: CSV file includes features for GMV forecasting
 - date (Day)
 - gmv (per day)

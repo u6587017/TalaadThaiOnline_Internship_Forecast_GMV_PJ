@@ -67,7 +67,7 @@ Historical Forecast หมายถึงการสร้างการพย
 ซึ่งช่วยอำนวยความสะดวกทำให้ไม่จำเป็นต้อง Train/Test Split แยกเพราะสามารถกำหนดสัดส่วนข้อมูลภายใน Parameter ได้เลย
 ![historical_forecast](https://github.com/u6587017/TalaadThaiOnline_Internship_Forecast_GMV_PJ/assets/108443663/d5a89563-f728-4f82-9d9f-3a0ef9153c39)
 ### Backtesting
-Backtesting เกี่ยวข้องกับการแบ่งข้อมูลในอดีตเป็น Training set และ Testing set จากนั้นฝึกโมเดลด้วยข้อมูลการฝึกสอนและทดสอบความสามารถของโมเดลในการทำนายค่าของข้อมูลในชุดการทดสอบ กระบวนการนี้สามารถทำได้หลายวิธี เช่น การใช้ rolling window หรือ expanding window approach เพื่อทำการพยากรณ์ในหลายจุดเวลา
+Backtesting เกี่ยวข้องกับการแบ่งข้อมูลในอดีตเป็น Training set และ Testing set จากนั้นฝึกโมเดลด้วยข้อมูลการฝึกสอนและทดสอบความสามารถของโมเดลในการทำนายค่าของข้อมูลในชุดการทดสอบ กระบวนการนี้สามารถทำได้หลายวิธี เช่น การใช้ rolling window หรือ expanding window approach เพื่อทำการพยากรณ์ในหลายจุดเวลา ผลคือเราจะได้ผลลัพธ์โมเดลที่เป็นจริงมากกว่าเนื่องจากได้มีการทดสอบกับข้อมูลในทุก ๆ ช่วง
 ![backtest](https://github.com/u6587017/TalaadThaiOnline_Internship_Forecast_GMV_PJ/assets/108443663/68d633ef-ac96-4ecf-bdbe-b4597b235170)<br />
 ### <a href="https://unit8co.github.io/darts/userguide.html">Read More about Darts</a>
 ### Library

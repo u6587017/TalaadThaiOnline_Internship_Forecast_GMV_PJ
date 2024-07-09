@@ -53,12 +53,12 @@ Darts เป็นไลบรารีของ Python ที่ใช้งา
 ![darts_unit8](https://github.com/u6587017/TalaadThaiOnline_Internship_Forecast_GMV_PJ/assets/108443663/9970cfd5-23bd-4f1d-8691-aead61ef8ebb)
 ![darts](https://github.com/u6587017/TalaadThaiOnline_Internship_Forecast_GMV_PJ/assets/108443663/d57bbe15-013c-4433-9807-61fe1b98c6a5)
 ### Lags feature
-Lags feature เป็นแนวคิดพื้นฐานในการวิเคราะห์และพยากรณ์ Time-series data โดยการใช้ค่าของ Time-series data ในช่วงเวลาก่อนหน้าเป็น Feature ในการทำนายค่าของ Time-series ในอนาคต Lag feature ถูกสร้างขึ้นโดยการเลื่อนข้อมูลซีรีส์เวลาย้อนหลังตามจำนวนช่วงเวลาที่กำหนด (lags) แต่ละ lag แทนค่าของซีรีส์เวลาในขั้นเวลาก่อนหน้า
+Lags feature เป็นแนวคิดพื้นฐานในการวิเคราะห์และพยากรณ์ Time-series data โดยการใช้ค่าของ Time-series data ในช่วงเวลาก่อนหน้าเป็น Feature ในการทำนายค่าของ Time-series ในอนาคต Lag feature ถูกสร้างขึ้นโดยการเลื่อนข้อมูลซีรีส์เวลาย้อนหลังตามจำนวนช่วงเวลาที่กำหนด (lags) แต่ละ lag แทนค่าของซีรีส์เวลาในขั้นเวลาก่อนหน้า ดูตัวอย่างจากภาพด้านล่าง
 ![Screenshot 2024-07-05 131315](https://github.com/u6587017/TalaadThaiOnline_Internship_Forecast_GMV_PJ/assets/108443663/24aea135-89bb-40fc-9639-aa919a3edf45)
 ### Covariates in Darts
-In Darts, covariates refer to external data that can be used as inputs to models to help improve forecasts. In the context of forecasting models, the target is the series to be forecasted/predicted, and the covariates themselves are not predicted.
-- Past covariates are (by definition) covariates known only into the past (e.g. measurements)
-- Future covariates are (by definition) covariates known into the future (e.g., weather forecasts)
+ใน Darts, covariates หมายถึงข้อมูลภายนอกที่สามารถใช้เป็น Feature ให้กับโมเดลเพื่อช่วยปรับปรุงการพยากรณ์ 
+- Past covariates (ตามความหมาย) หมายถึง covariates ที่รู้เฉพาะในอดีต (เช่น การวัดค่าต่าง ๆ) 
+- Future covariates (ตามความหมาย) หมายถึง covariates ที่รู้ล่วงหน้าในอนาคต (เช่น การพยากรณ์อากาศ, ข้อมูลปฏิทิน, Marketing Campaign date)
 ![cov](https://github.com/u6587017/TalaadThaiOnline_Internship_Forecast_GMV_PJ/assets/108443663/b45e999c-afb3-43d6-94ad-421c3ce59210)<br />
 If you train a model using past_covariates, you’ll have to provide these past_covariates also at prediction time to predict(). This applies to future_covariates too, with a nuance that future_covariates have to extend far enough into the future at prediction time (all the way to the forecast horizon n). This can be seen in the graph below. past_covariates needs to include at least the same time steps as target, and future_covariates must include at least the same time span plus additional n forecast horizon time steps.
 

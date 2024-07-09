@@ -124,6 +124,7 @@ df.shape
 #### Check Data Types
 #### Outlier
 ระบุและแทนที่ค่า Outlier โดยใช้ค่า Z-score Standardization สำหรับการระบุค่า Outlier คือ Z-score ที่มากกว่า 3 หรือน้อยกว่า -3 ฟังก์ชัน np.abs(z_scores) > 3 จะคืนค่าเป็นอาเรย์ของบูลีนที่มีค่า True ซึ่งระบุค่าผิดปกติ
+จากนั้นจะแทนที่ Outlier ด้วยค่าเฉลี่ยของข้อมูลที่ไม่ใช่ Outlier
 ```
 # Function to replace outliers with the mean of the rest of the values
 
@@ -240,22 +241,22 @@ The Pearson correlation coefficient (r) ranges from -1 to 1:
 df.corr()
 ```
 ### Check for stationary data using ACF and PACF
-Stationary data is a type of time series data whose statistical properties, such as mean, variance, and autocorrelation, do not change over time. In other words, the data does not exhibit trends, seasonality, or other time-dependent structures that could affect the consistency of these properties.
-Models typically perform better with stationary data rather than non-stationary data. So, we could try to make the data non-stationary and we can we can see which one perform better
+ข้อมูลที่อยู่ในสถานะคงที่ (Stationary data) เป็นประเภทของ Time-series data ที่คุณสมบัติทางสถิติเช่น ค่าเฉลี่ย, ความแปรปรวน, และการหาความสัมพันธ์ตัวเอง (autocorrelation) ไม่เปลี่ยนแปลงไปตามเวลา พูดอีกอย่างหนึ่งคือ ข้อมูลไม่แสดงแนวโน้ม, ฤดูกาล หรือโครงสร้างที่ขึ้นอยู่กับเวลาซึ่งสามารถส่งผลต่อความคงที่ของคุณสมบัติเหล่านี้
+โมเดลมักทำงานได้ดีขึ้นกับข้อมูลที่อยู่ในสถานะคง (Stationary data) ที่มากกว่าข้อมูลที่ไม่อยู่ในสถานะคงที่ (Non-Stationary) ดังนั้น เราอาจลองทำให้ข้อมูลเป็นสถานะไม่คงที่แล้วดูว่าโมเดลไหนทำงานได้ดีกว่ากัน ซึ่งเราสามารถใช้ค่า ACF และ PACF เพื่อเช็คได้ว่าข้อมูลเป็น Stationary หรือ Non-Stationary
 ```
 from darts.utils.statistics import plot_acf, plot_pacf
 acf = plot_acf(rescaled['gmv'], max_lag=80)
 pacf =plot_pacf(rescaled['gmv'], max_lag=80)
 ```
 - Stationary Time Series:
-ACF: The autocorrelations drop to zero relatively quickly.
-PACF: The partial autocorrelations also drop to zero quickly.
+ACF: Autocorrelations ลดลงเป็นศูนย์อย่างรวดเร็ว
+PACF: Partial autocorrelations ก็ลดลงเป็นศูนย์อย่างรวดเร็วเช่นกัน
 
 - Non-Stationary Time Series:
-ACF: The autocorrelations decrease slowly and may remain significant for many lags.
-PACF: The partial autocorrelations can be significant for many lags.
+ACF: Autocorrelations ลดลงอย่างช้า ๆ และอาจคงมีนัยสำคัญสำหรับหลาย lags
+PACF: Partial autocorrelations อาจมีนัยสำคัญสำหรับหลาย lags
 
-We could see from the below attached images
+เราสามารถดูได้จากภาพด้านล่าง
 ##### ACF
 ![acf](https://github.com/u6587017/TalaadThaiOnline_Internship_Forecast_GMV_PJ/assets/108443663/d548e23a-3794-4ee5-8af5-fef2a5576999)
 ##### PACF
@@ -278,7 +279,7 @@ print('p-value: %f' % result[1])
 ```
 
 ### <a name="evaluation"></a>Evaluation
-We could evaluate from 3 metrics
+เราสามารถประเมินผลของโมเดลได้ด้วย Metrics ดังต่อไปนี้
 - MAE calculates the average absolute difference between the actual values and the predicted values. It gives an idea of how much the predictions deviate from the actual values on average. Interpretation: A lower MAE value indicates better model performance. It is easy to understand and interpret.
 <br />![mean-absolute-error-equation](https://github.com/u6587017/TalaadThaiOnline_Internship_Forecast_GMV_PJ/assets/108443663/70a2a27c-40a2-4a47-a0a4-4fc1a789af89)
 - MAPE measures the average absolute percentage difference between the actual values and the predicted values. It is scale-independent and gives a percentage error, which is useful for comparing forecast accuracy across different datasets. Interpretation: A lower MAPE value indicates better model performance. It is intuitive but can be problematic when actual values are close to zero, leading to extremely high percentage errors.

@@ -218,7 +218,7 @@ future_cov = fill_missing_values(future_cov, fill='auto')
 ```
 ## <a name="scaler"></a>Scaler (Optional)
 ใน Darts, Scaler คือ MinMaxScaler ซึ่งเป็นเทคนิคการปรับ Feature ในกระบวนการเตรียมข้อมูล โดยทำการปรับขนาด Feature แต่ละตัวให้อยู่ในช่วงที่กำหนด โดยทั่วไปจะอยู่ระหว่าง 0 และ 1
-MinMaxScaler ถูกใช้เพื่อทำให้ Feature ในชุดข้อมูลเป็น Standardized ซึ่งจะช่วยให้มั่นใจว่า Feature แต่ละตัวป้องกันไม่ให้คุณลักษณะที่มีช่วงกว้างกว่าส่งผลต่อโมเดลมากเกินไป
+MinMaxScaler ถูกใช้เพื่อทำให้ Feature ในชุดข้อมูล ซึ่งจะช่วยให้มั่นใจว่า Feature แต่ละตัวป้องกันไม่ให้คุณลักษณะที่มีช่วงกว้างกว่าส่งผลต่อโมเดลมากเกินไป
 ```
 from darts.dataprocessing.transformers import Scaler
 
@@ -230,7 +230,7 @@ future_cov = scaler_cov.fit_transform(future_cov)
 future_cov
 ```
 #### Correlation
-Highly correlated features can provide redundant information to the model
+คุณลักษณะที่มีความสัมพันธ์สูงสามารถให้ข้อมูลที่เป็นประโยชน์ในการเลือก Feature ไปใช้ Train โมเดลได้
 The Pearson correlation coefficient (r) ranges from -1 to 1:
 - 1 to -0.7 or 0.7 to 1: Strong correlation
 - 0.7 to -0.5 or 0.5 to 0.7: Moderate correlation

@@ -249,26 +249,29 @@ acf = plot_acf(rescaled['gmv'], max_lag=80)
 pacf =plot_pacf(rescaled['gmv'], max_lag=80)
 ```
 - Stationary Time Series:
-ACF: Autocorrelations ลดลงเป็นศูนย์อย่างรวดเร็ว
-PACF: Partial autocorrelations ก็ลดลงเป็นศูนย์อย่างรวดเร็วเช่นกัน
+  - ACF: Autocorrelations ลดลงเป็นศูนย์อย่างรวดเร็ว
+  - PACF: Partial autocorrelations ก็ลดลงเป็นศูนย์อย่างรวดเร็วเช่นกัน
 
 - Non-Stationary Time Series:
-ACF: Autocorrelations ลดลงอย่างช้า ๆ และอาจคงมีนัยสำคัญสำหรับหลาย lags
-PACF: Partial autocorrelations อาจมีนัยสำคัญสำหรับหลาย lags
+  - ACF: Autocorrelations ลดลงอย่างช้า ๆ และอาจคงมีนัยสำคัญสำหรับหลาย lags
+  - PACF: Partial autocorrelations อาจมีนัยสำคัญสำหรับหลาย lags
 
 เราสามารถดูได้จากภาพด้านล่าง
 ##### ACF
 ![acf](https://github.com/u6587017/TalaadThaiOnline_Internship_Forecast_GMV_PJ/assets/108443663/d548e23a-3794-4ee5-8af5-fef2a5576999)
 ##### PACF
-![pacf](https://github.com/u6587017/TalaadThaiOnline_Internship_Forecast_GMV_PJ/assets/108443663/3498a4b8-d626-4359-b782-97ec2812a297)
-From the images, we could see that they are in the case of stationary.
+![pacf](https://github.com/u6587017/TalaadThaiOnline_Internship_Forecast_GMV_PJ/assets/108443663/3498a4b8-d626-4359-b782-97ec2812a297)<br />
+จากรูป เราจะเห็นได้ว่าข้อมูลยังเป็น Non-Stationary
 #### Make data from Stationary to Non-Stationary
 ```
 # สมมติว่ามี DataFrame ชื่อ data ที่มีคอลัมน์ 'value'
 df['gmv_diff'] = df['gmv'].diff()
 df = df.dropna().reset_index(drop=True)
 ```
-Use Adfuller
+ใช้ Adfuller <br />
+การตีความผลลัพธ์
+หาก p-value น้อยกว่า 0.05 เราปฏิเสธสมมติฐานศูนย์ (null hypothesis)
+ซึ่งหมายความว่าข้อมูลอยู่ในสถานะคงที่ (Stationary)
 ```
 from statsmodels.tsa.stattools import adfuller
 
@@ -280,15 +283,16 @@ print('p-value: %f' % result[1])
 
 ### <a name="evaluation"></a>Evaluation
 เราสามารถประเมินผลของโมเดลได้ด้วย Metrics ดังต่อไปนี้
-- MAE calculates the average absolute difference between the actual values and the predicted values. It gives an idea of how much the predictions deviate from the actual values on average. Interpretation: A lower MAE value indicates better model performance. It is easy to understand and interpret.
+- MAE คำนวณค่าเฉลี่ยของความแตกต่างสัมบูรณ์ระหว่างค่าจริงและค่าที่ทำนาย คิดว่าการทำนายเบี่ยงเบนจากค่าจริงโดยเฉลี่ยเท่าใด
+  - การตีความ: ค่า MAE ที่ต่ำกว่าบ่งบอกถึงประสิทธิภาพของโมเดลที่ดีกว่า ข้อดีของ MAE คือง่ายต่อการเข้าใจและตีความ
 <br />![mean-absolute-error-equation](https://github.com/u6587017/TalaadThaiOnline_Internship_Forecast_GMV_PJ/assets/108443663/70a2a27c-40a2-4a47-a0a4-4fc1a789af89)
-- MAPE measures the average absolute percentage difference between the actual values and the predicted values. It is scale-independent and gives a percentage error, which is useful for comparing forecast accuracy across different datasets. Interpretation: A lower MAPE value indicates better model performance. It is intuitive but can be problematic when actual values are close to zero, leading to extremely high percentage errors.
+- MAPE วัดค่าเฉลี่ยของความแตกต่างสัมบูรณ์เป็นเปอร์เซ็นต์ระหว่างค่าจริงและค่าที่ทำนาย ไม่ขึ้นอยู่กับขนาดของข้อมูลและให้ค่าเป็นเปอร์เซ็นต์ ซึ่งเป็นประโยชน์ในการเปรียบเทียบความแม่นยำของการพยากรณ์ระหว่างชุดข้อมูลต่างๆ
+  - การตีความ: ค่า MAPE ที่ต่ำกว่าบ่งบอกถึงประสิทธิภาพของโมเดลที่ดีกว่า เข้าใจง่ายแต่สามารถเป็นปัญหาได้เมื่อค่าจริงใกล้ศูนย์ ซึ่งจะทำให้เกิดข้อผิดพลาดเป็นเปอร์เซ็นต์ที่สูงมาก
 <br />![mape](https://github.com/u6587017/TalaadThaiOnline_Internship_Forecast_GMV_PJ/assets/108443663/8f8d1ae8-d045-4cdd-a049-284a43617870)
-- RMSE calculates the square root of the average squared differences between the actual values and the predicted values.
-It is sensitive to outliers because it squares the errors, which can disproportionately affect the RMSE if large errors are present.
-Interpretation: A lower RMSE value indicates better model performance. It provides a good measure of how accurately the model predicts the target variable.
+- RMSE คำนวณรากที่สองของค่าเฉลี่ยของความแตกต่างที่ยกกำลังสองระหว่างค่าจริงและค่าที่ทำนาย มันไวต่อค่าผิดปกติเพราะมันยกกำลังสองข้อผิดพลาด ซึ่งสามารถส่งผลกระทบอย่างมากต่อ RMSE หากมีข้อผิดพลาดขนาดใหญ่เกิดขึ้น
+  - การตีความ: ค่า RMSE ที่ต่ำกว่าบ่งบอกถึงประสิทธิภาพของโมเดลที่ดีกว่า มันให้การวัดที่ดีว่าโมเดลทำนายตัวแปรเป้าหมายได้แม่นยำเพียงใด
 <br />![RMSE-equation](https://github.com/u6587017/TalaadThaiOnline_Internship_Forecast_GMV_PJ/assets/108443663/5b15ff11-cea4-4c45-82a6-662fb26979e5)<br />
-Select models to do Historical_Forecast, it will plot actual data (black line), validation data (blue line), forecast data (pink line) and the metrics at the title of each model figure
+การเลือกโมเดลเพื่อทำ Historical Forecast จะมีการพล็อตข้อมูลจริง (เส้นสีดำ), ข้อมูลการตรวจสอบ (เส้นสีน้ำเงิน), ข้อมูลการพยากรณ์ (เส้นสีชมพู) และค่า Metrics ที่ใช้
 ```
 from darts.models.forecasting.catboost_model import CatBoostModel
 from darts.models.forecasting.lgbm import LightGBMModel
@@ -383,7 +387,7 @@ plt.show()
 ### <a name="result"></a>Result
 ![18_Jun_Historical_Forecast](https://github.com/u6587017/TalaadThaiOnline_Internship_Forecast_GMV_PJ/assets/108443663/120a0ce0-c789-4d7a-94cb-82c07aebfcea)
 ### <a name="hyper"></a>Hyperparameter Tuning
-Hyperparameter Tuning is the process of finding the most effective set of hyperparameters for a machine learning model. Hyperparameters are the parameters that are not learned from the data but set prior to the training process. They control the overall behavior of the training process and the structure of the model. We will use GridSearch. Darts Library also provide GridSearch, so we could find the best params like lags.
+Hyperparameter Tuning เป็นกระบวนการหาชุด Hyperparameter ที่มีประสิทธิภาพที่สุดสำหรับโมเดล Hyperparameter เป็นพารามิเตอร์ที่ไม่ได้เรียนรู้จากข้อมูลแต่ถูกตั้งค่าก่อน Training มันควบคุมพฤติกรรมโดยรวมของกระบวนการ Training และโครงสร้างของโมเดล เราจะใช้ GridSearch ซึ่งไลบรารี Darts ก็มีฟังก์ชัน GridSearch ดังนั้นเราสามารถหาค่าพารามิเตอร์ที่ดีที่สุดได้ เช่น lags
 ```
 # from darts.models.forecasting.lgbm import LightGBMModel
 # from darts.models.forecasting.catboost_model import CatBoostModel
@@ -475,9 +479,9 @@ best_param = RegressionModel.gridsearch(
 
 ```
 ### <a name="train"></a>Train and use model to Forecast
-- To train model, we will select the best model in each day base on the lowest MAPE to fit with the time-series data
-- To forecast, we will use model.predict(length of days we're going to forecast, future_covariates)
-- I also commented the code in case we use gmv_diff which is more non-stationary data to forecast
+- ในการฝึกโมเดล เราจะเลือกโมเดลที่ดีที่สุดโดยอิงจากค่า MAPE ที่ต่ำที่สุดเพื่อให้เข้ากับ Time-series data
+- ในการพยากรณ์ เราจะใช้ model.predict (จำนวนวันที่จะพยากรณ์, future_covariates)
+- ผมยังได้คอมเมนต์โค้ดในกรณีที่เราใช้ gmv_diff ซึ่งเป็นข้อมูลที่ไม่อยู่ในสถานะคงที่ (Non-stationary) มากขึ้นในการพยากรณ์ โดยทำการลองฝึกทั้งข้อมูล 2 รูปแบบ และบันทึกผล
 ```
 from darts.models.forecasting.lgbm import LightGBMModel
 
@@ -507,7 +511,7 @@ forecast_diff.pd_dataframe()
 ```
 ![forecast](https://github.com/u6587017/TalaadThaiOnline_Internship_Forecast_GMV_PJ/assets/108443663/9c0c56a4-79e4-4bd6-a011-c51207e3e1d5)
 ## <a name="phase_2"></a>Phase 2
-In this phase, I'm going to implement the Deep Learning model using Tensorflow and Keras
+ใน Phase นี้ จะนำเสนอการใช้งานโมเดลการเรียนรู้เชิงลึก (Deep Learning) โดยใช้ Tensorflow และ Keras
 ### <a name="lib2"></a>Import Library
 ```
 import pandas as pd
@@ -520,9 +524,9 @@ import tensorflow as tf
 from sklearn import metrics
 from sklearn.metrics import mean_squared_error
 ```
-Then we will use the code since read CSV file - Feature Engineering the same as in Phase 1 <br/>
+โดยเราจะใช้โค้ดตั้งแต่การอ่านไฟล์ CSV ไปจนถึงการสร้างคุณลักษณะ (Feature Engineering) เหมือนใน Phase ที่ 1
 ### Deep Learning
-After the DataFrame is ready we will create a function to convert DataFrame to Numpy Array for Deep Learning
+หลังจากที่ DataFrame พร้อมแล้ว เราจะสร้างฟังก์ชันเพื่อแปลง DataFrame เป็น Numpy Array สำหรับการทำ Deep Learning
 #### <a name="1_feature"></a>Function to convert DataFrame to Numpy array (1 feature)
 ```
 # [ [ [g1],[g2],[g3],[g4],[g5] ] ] [g6]
@@ -575,8 +579,8 @@ def df_to_X_y2 (df, window_size=7):
 #### Function Purpose
 เป็นฟังก์ชันที่เปลี่ยนจาก DataFrame เป็น Numpy array คล้ายกับด้านบน ต่างกันที่จะเป็นการใช้หลาย ๆ features มาช่วยในการ train <br />
 [ [ [g1, q1],[g2, q1],[g3, q1],[g4, q1],[g5, q1] ] ] ==> [g6] ; เมื่อ g, q คือแต่ละ feature<br />
-Input: A pandas DataFrame df and a window_size (default is 7).<br />
-Output: Two numpy arrays, X and y, where X contains sequences of data points and y contains the corresponding labels (the next data point following each sequence).
+- Input: DataFrame และ window_size (ค่าเริ่มต้นคือ 7)
+- Output: Numpy: X และ y โดยที่ X คือ array ของ feature (rows, lags, features) และ y เป็น label เป้าหมายที่เราจะทำนาย
 #### Use convert function Check numpy array shape
 ```
 X2, y2 = df_to_X_y2(df)
@@ -588,9 +592,8 @@ X2_test, y2_test = X2[int(len(df)*0.8):], y2[int(len(df)*0.8):]
 X2_train.shape, y2_train.shape, X2_test.shape, y2_test.shape
 ```
 #### <a name="standardize"></a>Standardization
-Standardization คือกระบวนการในขั้นตอนการเตรียมข้อมูลที่ใช้ปรับขนาดคุณลักษณะ (features) ให้มีค่าเฉลี่ยเป็น 0 และส่วนเบี่ยงเบนมาตรฐานเป็น 1 การทำเช่นนี้เพื่อให้ feature แต่ละตัวมีส่วนร่วมใน model อย่างเท่าเทียมกันและเพื่อปรับปรุงประสิทธิภาพและความเสถียรในการฝึกของอัลกอริทึมการเรียนรู้ของเครื่อง<br />
+Standardization คือกระบวนการในขั้นตอนการเตรียมข้อมูลที่ใช้ปรับขนาดคุณลักษณะ (features) ให้มีค่าเฉลี่ยเป็น 0 และส่วนเบี่ยงเบนมาตรฐานเป็น 1 การทำเช่นนี้เพื่อให้ feature แต่ละตัวมีส่วนร่วมใน model อย่างเท่าเทียมกันและเพื่อปรับปรุงประสิทธิภาพและความเสถียรในการฝึกของอัลกอริทึม Machine Learning<br />
 <br />
-Standardization is a process in data preprocessing where the features are rescaled so that they have a mean of 0 and a standard deviation of 1. This is done to ensure that each feature contributes equally to the model and to improve the performance and training stability of machine learning algorithms.
 ```
 gmv_training_mean = np.mean(X2_train[:, :, 0])
 gmv_training_std = np.std(X2_train[:, :, 0])
@@ -620,14 +623,15 @@ model4.compile(loss='mse', optimizer=Adam(learning_rate=0.0001), metrics=[RootMe
 <br />
 Trains the model4 using the fit method with the training data X2_train and y2_train for 20 epochs. The fit method returns a history object which contains details about the training process.
 
-- model4.fit: Trains the model using the provided training data.
-- X2_train: The input features for training.
-- y2_train: The target values for training.
-- epochs=20: The model will iterate over the entire training dataset 20 times.
+- model4.fit(data): Function ฝึกโมเดลโดยใช้ข้อมูลการฝึกที่จัดเตรียมไว้
+- X2_train: Input features array
+- y2_train: Target array
+- epochs=20: โมเดลจะทำการวนรอบผ่านชุดข้อมูลการฝึกทั้งหมด 20 ครั้ง
 ```
 history = model4.fit(X2_train, y2_train, epochs=20)
 ```
 #### Function to convert standardized GMV back to actual GMV
+Standardized จะทำให้ข้อมูลมีค่าอยู่ระหว่าง -3 ถึง 3 เมื่อททำนายออกมาก็จะได้ค่าใน Range นี้ ก่อนทำการเปรียบเทียบจึงต้องทำการแปลงค่ากลับเป็นค่าจริง
 ```
 def post_process_gmv(arr):
   arr = (arr*gmv_training_std) + gmv_training_mean
@@ -657,7 +661,7 @@ def plot_predictions2(model, X, y, l):
     return df.tail(7)
 ```
 #### <a name="result_2"></a>Call plot_prediction function
-Will show date, predicted GMV, actual GMV and Time-series graph 
+Function จะแสดง DataFrame ค่าจริงและค่าที่พยากรณ์และจะแสดงเป็นกราฟด้วย
 ```
 plot_predictions2(model4, X2_test, y2_test, 'LSTM')
 ```

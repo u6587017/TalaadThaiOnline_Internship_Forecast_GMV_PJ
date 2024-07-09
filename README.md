@@ -637,11 +637,11 @@ def post_process_gmv(arr):
   arr = (arr*gmv_training_std) + gmv_training_mean
   return arr
 ```
-
+```
 from sklearn.metrics import mean_squared_error, mean_absolute_error, mean_absolute_percentage_error
 from math import sqrt
 df2 = df.copy()
-
+```
 ### <a name="eval_2"></a>Evaluation
 #### Function to predict the validate data
 ```

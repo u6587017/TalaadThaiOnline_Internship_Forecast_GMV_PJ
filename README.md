@@ -64,7 +64,7 @@ Lags feature เป็นแนวคิดพื้นฐานในการ�
 
 ### Historical Forecast
 Historical Forecast หมายถึงการสร้างการพยากรณ์สำหรับหลายจุดในเวลา โดยมักใช้วิธีการ rolling หรือ expanding window วิธีนี้ใช้เพื่อจำลองว่าโมเดลจะทำงานอย่างไรในสถานการณ์การพยากรณ์จริงโดยการทำนายในหลายขั้นเวลาในอดีตและเปรียบเทียบกับค่าจริง
-ซึ่งช่วยอำนวยความสะดวกทำให้ไม่จำเป็นต้อง Train/Test Split เพราะสามารถกำหนดภายใน Parameter ได้เลย
+ซึ่งช่วยอำนวยความสะดวกทำให้ไม่จำเป็นต้อง Train/Test Split แยกเพราะสามารถกำหนดสัดส่วนข้อมูลภายใน Parameter ได้เลย
 ![historical_forecast](https://github.com/u6587017/TalaadThaiOnline_Internship_Forecast_GMV_PJ/assets/108443663/d5a89563-f728-4f82-9d9f-3a0ef9153c39)
 ### <a href="https://unit8co.github.io/darts/userguide.html">Read More about Darts</a>
 ### Library
@@ -90,7 +90,7 @@ df.head()
 ```
 #### Update GMV (Every day)
 - เพิ่มข้อมูล date ลง 'date' column and GMV ลง 'gmv' column
-- We have to update GMV on 2024-06-12 since it was the day we query, so we want to ensure that the GMV reflects the complete data for that day.
+- ต้องทำการอัปเดต GMV ในวันที่ 12 มิถุนายน 2024 เนื่องจากเป็นวันที่เราทำการ Query ข้อมูลออกมาระหว่างวัน ทำให้ยอด GMV ณ ตอน Query ยังไม่ใช่ยอดที่จบวัน
 ```
 # Update gmv each day after query
 
@@ -123,7 +123,7 @@ df.shape
 ```
 #### Check Data Types
 #### Outlier
-Identify and replace outliers based on the Z-score. A common threshold for identifying outliers is a Z-score greater than 3 or less than -3. np.abs(z_scores) > 3 returns a boolean array where True indicates an outlier
+ระบุและแทนที่ค่า Outlier โดยใช้ค่า Z-score Standardization สำหรับการระบุค่า Outlier คือ Z-score ที่มากกว่า 3 หรือน้อยกว่า -3 ฟังก์ชัน np.abs(z_scores) > 3 จะคืนค่าเป็นอาเรย์ของบูลีนที่มีค่า True ซึ่งระบุค่าผิดปกติ
 ```
 # Function to replace outliers with the mean of the rest of the values
 
@@ -173,8 +173,8 @@ df.eq(0).sum()
 df.fillna(df.mean(), inplace=True)
 ```
 ### <a name="feature_engineering"></a>Feature Engineering
-Create new features or transform existing ones to improve the performance of machine learning models
-From below code, we create new features from date such as Marketing Campaign
+สร้าง Feature ใหม่หรือแปลง Feature ที่มีอยู่เพื่อปรับปรุงประสิทธิภาพของโมเดล
+จากโค้ดด้านล่าง เราสร้างคุณลักษณะใหม่จากวันที่ เช่น การแคมเปญการตลาด (Marketing Campaign)
 ```
 df['Quarter'] = df['date'].dt.quarter
 df['Month'] = df['date'].dt.month
@@ -184,7 +184,7 @@ df['double_date'] = df['date'].apply(lambda x: 1 if x.month == x.day else 0)
 df['mid_month'] = df['date'].apply(lambda x: 1 if x.day == 15 else 0)
 df['payday'] = df['date'].apply(lambda x: 1 if x.day>=25 else 0)
 ```
-In this code, we will make df2 with copying of only extracted feature from df for an easier to use. We will see it shortly 
+ในโค้ดนี้ เราจะสร้าง DataFrame ชื่อ df2 โดยคัดลอกเฉพาะ Feature ที่เป็น Covariates จาก df เพื่อให้ใช้งานได้ง่ายขึ้น
 ```
 date_range = pd.date_range(start='2023-01-01', end='2024-12-31', freq='D')
 
@@ -217,8 +217,8 @@ from darts.utils.missing_values import fill_missing_values
 future_cov = fill_missing_values(future_cov, fill='auto')
 ```
 ## <a name="scaler"></a>Scaler (Optional)
-Scaler in Darts is MinMaxScaler. MinMaxScaler is a feature scaling technique in data preprocessing that transforms features by scaling each feature to a given range, typically between 0 and 1.
-MinMaxScaler is used to normalize the features in a dataset, which ensures that each feature contributes equally to the result and prevents features with larger ranges from dominating the model.
+ใน Darts, Scaler คือ MinMaxScaler ซึ่งเป็นเทคนิคการปรับ Feature ในกระบวนการเตรียมข้อมูล โดยทำการปรับขนาด Feature แต่ละตัวให้อยู่ในช่วงที่กำหนด โดยทั่วไปจะอยู่ระหว่าง 0 และ 1
+MinMaxScaler ถูกใช้เพื่อทำให้ Feature ในชุดข้อมูลเป็น Standardized ซึ่งจะช่วยให้มั่นใจว่า Feature แต่ละตัวป้องกันไม่ให้คุณลักษณะที่มีช่วงกว้างกว่าส่งผลต่อโมเดลมากเกินไป
 ```
 from darts.dataprocessing.transformers import Scaler
 
